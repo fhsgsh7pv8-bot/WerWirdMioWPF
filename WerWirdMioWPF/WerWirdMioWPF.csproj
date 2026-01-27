@@ -9,9 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\coconutgames.png" />
+    <None Remove="images\Tikiland.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Fonts\" />
     <Folder Include="Theme\" />
     <Folder Include="Resource\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\coconutgames.png" />
+    <Resource Include="images\Tikiland.png" />
   </ItemGroup>
 
 </Project>

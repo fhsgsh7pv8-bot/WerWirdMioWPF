@@ -1,16 +1,57 @@
-﻿<Page x:Class="WerWirdMioWPF.View.StartPage"
+﻿<Page x:Class="WerWirdMioWPF.StartPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WerWirdMioWPF.View" xmlns:viewmodel="clr-namespace:WerWirdMioWPF.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:StartPageViewModel}"
-      mc:Ignorable="d"
-      d:DesignHeight="600" d:DesignWidth="920"
-      Title="Start">
+      Background="Transparent">
 
     <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="315,234,0,0" TextWrapping="Wrap" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="325,292,0,0" VerticalAlignment="Top" Command="{Binding SetUserNameCommand}"/>
+
+        <!-- ZENTRALE CARD -->
+        <Border Width="420"
+                Padding="30"
+                Background="#CCFFFFFF"
+                CornerRadius="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+            <StackPanel>
+
+                <!-- Titel -->
+                <TextBlock Text="Wer wird Millionär?"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="#333"
+                           TextAlignment="Center"
+                           Margin="0,0,0,20"/>
+
+                <!-- Untertitel -->
+                <TextBlock Text="Bitte gib deinen Namen ein"
+                           FontSize="14"
+                           Foreground="#666"
+                           TextAlignment="Center"
+                           Margin="0,0,0,15"/>
+
+                <!-- NAMEN EINGABE -->
+                <TextBox x:Name="NameTextBox"
+                         Height="45"
+                         FontSize="16"
+                         Padding="10"
+                         Margin="0,0,0,20"
+                         BorderThickness="0"
+                         Background="#F0F0F0"/>
+
+                <!-- START BUTTON -->
+                <Button Content="Weiter"
+                        Height="45"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Background="#1E81B0"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="Weiter_Click"/>
+
+            </StackPanel>
+        </Border>
 
     </Grid>
 </Page>
