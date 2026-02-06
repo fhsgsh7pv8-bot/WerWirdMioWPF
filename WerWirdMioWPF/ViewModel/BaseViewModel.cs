@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using WerWirdMioWPF.View;
@@ -19,7 +20,6 @@ namespace WerWirdMioWPF.ViewModel
         public event PropertyChangedEventHandler? PropertyChanged;
 
 
-        public string userName;
         public NavigationService navigationService;
 
 
@@ -45,10 +45,28 @@ namespace WerWirdMioWPF.ViewModel
         public ICommand EndPageCommand { get { return _endpagecommand; } }
 
 
+
+
+        public string UserName
+        {
+            get { return _username; }
+            set
+            {
+
+                _username = value;
+                RaisePropertyChanged("UserName");
+
+            }
+        }
+
+
+        private string _username;
+
+
         public BaseViewModel(NavigationService navi, string userName)
         {
             navigationService = navi;
-            this.userName = userName;
+            _username = userName;
 
             _startpagecommand = new DelegateCommand(onStartPage);
             _playpagecommand = new DelegateCommand(onPlayPage);
@@ -62,9 +80,9 @@ namespace WerWirdMioWPF.ViewModel
         {
             navigationService.Navigate(new StartPage(navigationService));
         }
-        public void onPlayPage(object par)
+        public void onPlayPage(object parameters)
         {
-            navigationService.Navigate(new PlayPage(navigationService,userName));
+            navigationService.Navigate(new PlayPage(navigationService,UserName));
         }
         public void onHighScorePage(object param)
         {

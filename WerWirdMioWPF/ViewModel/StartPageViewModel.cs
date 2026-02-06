@@ -14,21 +14,7 @@ namespace WerWirdMioWPF.ViewModel
     public class StartPageViewModel : BaseViewModel
     {
 
-        public string UserName
-        {
-            get { return _username; }
-            set
-            {
-
-                _username = value;
-                RaisePropertyChanged("UserName");
-              
-            }
-        }
-
-
-        private string _username;
-
+        
 
 
 
@@ -54,10 +40,8 @@ namespace WerWirdMioWPF.ViewModel
 
         private void onSetUsername(object parameters)
         {
-           // navigationService.Navigate(new PlayPage(navigationService, userName));
             this.onPlayPage(parameters);
 
-            MessageBox.Show(UserName);
         }
 
 
