@@ -22,10 +22,12 @@ namespace WerWirdMioWPF
         {
 
 
+ 
+            InitializeComponent();
+
             GameService gameService = new GameService();
             gameService.navigationService = _NavigationFrame.NavigationService;
 
-            InitializeComponent();
             _NavigationFrame.Navigate(new StartPage(gameService));
         }
     }

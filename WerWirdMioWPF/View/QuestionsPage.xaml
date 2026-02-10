@@ -3,12 +3,49 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WerWirdMioWPF.View"  xmlns:viewmodel="clr-namespace:WerWirdMioWPF.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:QuestionsPageViewModel}"
+      xmlns:local="clr-namespace:WerWirdMioWPF.View"  
+      xmlns:viewmodel="clr-namespace:WerWirdMioWPF.ViewModel" 
+      d:DataContext="{d:DesignInstance Type=viewmodel:QuestionsPageViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="920"
       Title="QuestionsPage">
 
-    <Grid>
-        
+    <Grid Background="#FF34495E">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Margin="20" Background="#FFFFFFFF" CornerRadius="10">
+            <TextBlock Text="{Binding CurrentQuestion.question}" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" 
+                       FontSize="24" 
+                       TextWrapping="Wrap" 
+                       TextAlignment="Center"
+                       FontWeight="Bold"
+                       Foreground="#333"/>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="20,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" Content="{Binding CurrentQuestion.answer1}" Margin="10" FontSize="18" Background="#FF1E81B0" Foreground="White"/>
+            <Button Grid.Row="0" Grid.Column="1" Content="{Binding CurrentQuestion.answer2}" Margin="10" FontSize="18" Background="#FF1E81B0" Foreground="White"/>
+            <Button Grid.Row="1" Grid.Column="0" Content="{Binding CurrentQuestion.answer3}" Margin="10" FontSize="18" Background="#FF1E81B0" Foreground="White"/>
+            <Button Grid.Row="1" Grid.Column="1" Content="{Binding CurrentQuestion.answer4}" Margin="10" FontSize="18" Background="#FF1E81B0" Foreground="White"/>
+        </Grid>
+
+        <Button Grid.Row="2" Content="Abbrechen" Command="{Binding StartPageCommand}" 
+                Width="150" Height="40" Margin="20" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+
     </Grid>
 </Page>
