@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WerWirdMioWPF.Service;
 using WerWirdMioWPF.View;
 
 namespace WerWirdMioWPF
@@ -19,8 +20,12 @@ namespace WerWirdMioWPF
     {
         public MainWindow()
         {
+
+
+            GameService gameService = new GameService();
+
             InitializeComponent();
-            _NavigationFrame.Navigate(new StartPage(_NavigationFrame.NavigationService));
+            _NavigationFrame.Navigate(new StartPage(gameService));
         }
     }
 }

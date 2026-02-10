@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WerWirdMioWPF.Service;
 using WerWirdMioWPF.ViewModel;
 
 namespace WerWirdMioWPF.View
@@ -24,11 +25,12 @@ namespace WerWirdMioWPF.View
 
         StartPageViewModel startPageViewModel;
 
-        public StartPage(NavigationService navigationService)
+        public StartPage(GameService gameService)
         {
             InitializeComponent();
+            
 
-            startPageViewModel = new StartPageViewModel(navigationService);
+            startPageViewModel = new StartPageViewModel(gameService);
             DataContext = startPageViewModel;
         }
 

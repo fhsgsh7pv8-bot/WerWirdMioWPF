@@ -18,21 +18,19 @@ using WerWirdMioWPF.ViewModel;
 namespace WerWirdMioWPF.View
 {
     /// <summary>
-    /// Interaktionslogik für PlayPage.xaml
+    /// Interaktionslogik für QuestionsPage.xaml
     /// </summary>
-    public partial class PlayPage : Page
+    public partial class QuestionsPage : Page
     {
+        QuestionsPageViewModel questionsPageViewModel;
 
-            PlayPageViewModel playPageViewModel;
-
-        public PlayPage(GameService gameService)
+        public QuestionsPage(GameService gameService)
         {
             InitializeComponent();
 
-            playPageViewModel = new PlayPageViewModel(gameService);
-            DataContext = playPageViewModel;
+            questionsPageViewModel = new QuestionsPageViewModel(gameService);
+            DataContext = questionsPageViewModel;
         }
 
-     
     }
 }

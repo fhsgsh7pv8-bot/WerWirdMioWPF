@@ -6,22 +6,18 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using WerWirdMioWPF.Service;
 
 namespace WerWirdMioWPF.ViewModel
 {
-    internal class PlayPageViewModel : BaseViewModel
+    public class PlayPageViewModel : BaseViewModel
     {
 
         private readonly DelegateCommand _changeuser;
         public ICommand ChangeUserCommand { get { return _changeuser; } }
 
 
-
-
-
-
-
-        public PlayPageViewModel(NavigationService navi, String username) : base(navi, username)
+        public PlayPageViewModel(GameService gameService) : base(gameService)
         {
             _changeuser = new DelegateCommand(onChangeUser);
         }

@@ -20,6 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="images\coconutgames.png" />
     <Resource Include="images\Tikiland.png" />
   </ItemGroup>
