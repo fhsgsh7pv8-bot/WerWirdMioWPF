@@ -4,11 +4,39 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WerWirdMioWPF.View"
+      xmlns:viewmodel="clr-namespace:WerWirdMioWPF.ViewModel"
+      d:DataContext="{d:DesignInstance Type=viewmodel:HighscorePageViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Highscores">
+      Title="Highscores" Background="#1c2042">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="LEADERBOARD" FontSize="36" FontWeight="Bold" Foreground="#f1a719" 
+                   HorizontalAlignment="Center" Margin="0,20,0,20" Grid.Row="0"/>
+
+        <ListView ItemsSource="{Binding TopScores}" Background="Transparent" BorderThickness="0" 
+                  Margin="50,0,50,20" Grid.Row="1" HorizontalAlignment="Center" Width="400">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#0b132b" BorderBrush="#f1a719" BorderThickness="2" 
+                            CornerRadius="10" Margin="0,5" Padding="15,10" Width="380">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding UserName}" Foreground="White" FontSize="20" FontWeight="Bold" Grid.Column="0"/>
+                            <TextBlock Text="{Binding TotalScore, StringFormat={}{0} €}" Foreground="#f1a719" FontSize="20" FontWeight="Bold" Grid.Column="1"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Content="Zurück" Command="{Binding BackCommand}"  HorizontalAlignment="Left" Margin="10,332,0,0" Grid.Row="1" VerticalAlignment="Top" Width="60"/>
     </Grid>
 </Page>

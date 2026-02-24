@@ -12,6 +12,7 @@ namespace WerWirdMioWPF.Service
 
         public QuestionService questionService = new QuestionService();
         public NavigationService navigationService;
+        public HighscoreService highscoreService = new HighscoreService(); 
 
         public String UserName;
 

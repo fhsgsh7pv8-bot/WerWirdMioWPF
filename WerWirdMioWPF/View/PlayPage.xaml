@@ -19,6 +19,7 @@
 
         <Label HorizontalContentAlignment="Center" FontSize="25" Content="{Binding UserName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Center" Margin="0,118,0,0" VerticalAlignment="Top" Height="44" Width="156"/>
         <Button Content="Benutzer wechseln" Margin="10,0,0,10" Command="{Binding ChangeUserCommand}" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="118" />
+        <Button Content="Top Spieler" Margin="792,0,0,15" Command="{Binding HighScorePageCommand}" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="118" />
 
     </Grid>
 </Page>
