@@ -34,6 +34,7 @@ namespace WerWirdMioWPF.View
             DataContext = startPageViewModel;
         }
 
+
     }
 }
 
