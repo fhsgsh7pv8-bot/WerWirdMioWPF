@@ -11,12 +11,11 @@
     <Grid>
         <Grid VerticalAlignment="Top" 
               HorizontalAlignment="Center" 
-              Width="650" Height="500" 
-              Margin="0,105,0,0">
+              Width="599" Height="452" 
+              Margin="0,540,0,0">
 
             <Image Source="/images/startpage.png" 
-                   Stretch="Uniform" 
-                   VerticalAlignment="Bottom"/>
+                   Stretch="Uniform" Margin="-463,-288,-276,-71"/>
 
             <Grid Margin="0,150,0,60" Width="400">
                 <Grid.RowDefinitions>
@@ -34,7 +33,7 @@
                          BorderThickness="0"
                          VerticalContentAlignment="Center"
                          HorizontalContentAlignment="Center"
-                         CaretBrush="White" Margin="52,0,60,44" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+                         CaretBrush="White" Margin="-151,-1,-59,41" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
                     <TextBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleY="1"/>
@@ -43,7 +42,7 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </TextBox.RenderTransform>
-                    
+
                 </TextBox>
 
                 <Grid Grid.Row="3">
@@ -65,7 +64,7 @@
                             Foreground="Transparent" 
                             Background="Transparent"
                             BorderThickness="0"
-                            Cursor="Hand" Margin="110,-30,110,35">
+                            Cursor="Hand" Margin="20,-96,24,30">
 
                         <Button.Template>
                             <ControlTemplate TargetType="Button">

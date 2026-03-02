@@ -48,10 +48,10 @@
                VerticalAlignment="Top" Margin="17,20,0,0" Height="209" />
 
         <Image Source="/images/Willkommen.png" 
-               Width="280" 
+               Width="579" 
                HorizontalAlignment="Center" 
                VerticalAlignment="Top" 
-               Margin="0,41,0,0" />
+               Margin="0,20,0,0" Height="232" />
 
         <Label Content="{Binding UserName}" 
                HorizontalAlignment="Center" 
@@ -66,19 +66,19 @@
         <Button Command="{Binding QuestionsPageCommand}"
                 Style="{StaticResource ImageButtonStyle}"
                 HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,0,0">
-            <Image Source="/images/spielstarten.png" Width="320"/>
+            <Image Source="/images/spielstarten.png" Width="573" Height="276"/>
         </Button>
 
         <Button Command="{Binding ChangeUserCommand}"
                 Style="{StaticResource ImageButtonStyle}"
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,0,0,40">
-            <Image Source="/images/benutzerwechseln.png" Width="220"/>
+            <Image Source="/images/benutzerwechseln.png" Width="383" Height="217"/>
         </Button>
 
         <Button Command="{Binding HighScorePageCommand}"
                 Style="{StaticResource ImageButtonStyle}"
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40">
-            <Image Source="/images/topspieler.png" Width="220"/>
+            <Image Source="/images/topspieler.png" Width="373" Height="211"/>
         </Button>
     </Grid>
 </Page>
