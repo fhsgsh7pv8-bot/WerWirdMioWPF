@@ -17,7 +17,7 @@
               MediaEnded="BackgroundVideo_MediaEnded" />
 
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="SPIEL VORBEI" 
+            <TextBlock Text="DU BIST DER TIKI MEISTER!" 
                        FontSize="72" 
                        Foreground="White" 
                        FontWeight="Bold">

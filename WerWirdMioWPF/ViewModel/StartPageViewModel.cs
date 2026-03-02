@@ -30,8 +30,8 @@ namespace WerWirdMioWPF.ViewModel
 
         private void onSetUsername(object parameters)
         {
-            this.onEndPage(parameters);
-           // this.onPlayPage(parameters);
+           
+            this.onPlayPage(parameters);
 
         }
 
