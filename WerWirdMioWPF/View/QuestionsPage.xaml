@@ -7,7 +7,7 @@
       xmlns:viewmodel="clr-namespace:WerWirdMioWPF.ViewModel"
       d:DataContext="{d:DesignInstance Type=viewmodel:QuestionsPageViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="920"
+     d:DesignHeight="1080" d:DesignWidth="1920"
       Title="QuestionsPage" Background="#1c2042">
 
     <Page.Resources>
