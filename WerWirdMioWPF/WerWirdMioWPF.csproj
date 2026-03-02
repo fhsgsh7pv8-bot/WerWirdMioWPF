@@ -12,7 +12,7 @@
     <None Remove="images\coconutgames.png" />
     <None Remove="images\nameeingeben.png" />
     <None Remove="images\name_eingeben.png" />
-    <None Remove="images\schild.png" />
+    <None Remove="images\startpage.png" />
     <None Remove="images\Tikiland.png" />
   </ItemGroup>
 
@@ -29,7 +29,7 @@
   <ItemGroup>
     <Resource Include="images\coconutgames.png" />
     <Resource Include="images\nameeingeben.png" />
-    <Resource Include="images\schild.png" />
+    <Resource Include="images\startpage.png" />
     <Resource Include="images\Tikiland.png" />
   </ItemGroup>
 

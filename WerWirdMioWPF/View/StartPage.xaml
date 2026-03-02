@@ -6,125 +6,93 @@
       xmlns:viewmodel="clr-namespace:WerWirdMioWPF.ViewModel"
       mc:Ignorable="d"
       d:DataContext="{d:DesignInstance Type=viewmodel:StartPageViewModel}"
-      d:DesignHeight="600"
-      d:DesignWidth="920">
-
-    <!-- Insel-Hintergrund ist bereits im MainWindow -->
+      d:DesignHeight="600" d:DesignWidth="920">
 
     <Grid>
+        <Grid VerticalAlignment="Bottom" 
+              HorizontalAlignment="Center" 
+              Width="650" Height="500" 
+              Margin="0,0,0,20">
 
-        <!-- ZENTRIERTES SCHILD -->
-        <Grid Width="650"
-              Height="360"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center">
+            <Image Source="/images/startpage.png" 
+                   Stretch="Uniform" 
+                   VerticalAlignment="Bottom"/>
 
-            <!-- 🪵 SCHILD PNG -->
-            <Image Source="/Images/schild.png"
-                   Stretch="Uniform"
-                   Margin="-99,136,-57,-127"/>
-            
+            <Grid Margin="0,150,0,60" Width="400">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="103" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
 
-            <!-- ✨ LOGIN GLOW -->
-            <Border x:Name="LoginGlow"
-                    Width="119"
-                    Height="44"
-                    Background="#66FFD54F"
-                    CornerRadius="22"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Bottom"
-                    Margin="294,0,0,0"
-                    Opacity="0"
-                    IsHitTestVisible="False">
+                <TextBox
+                         FontSize="24" 
+                         FontWeight="Bold"
+                         Foreground="White"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                         CaretBrush="White" Margin="52,0,60,44" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+                    <TextBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBox.RenderTransform>
+                </TextBox>
 
-                <Border.Effect>
-                    <BlurEffect Radius="18"/>
-                </Border.Effect>
-            </Border>
+                <Grid Grid.Row="3">
+                    <Border x:Name="LoginGlow"
+                            Width="180"
+                            Background="#66FFD54F"
+                            CornerRadius="25"
+                            Opacity="0"
+                            IsHitTestVisible="False" Margin="110,-35,110,30">
+                        <Border.Effect>
+                            <BlurEffect Radius="15"/>
+                        </Border.Effect>
+                    </Border>
 
-            <!-- 🔘 UNSICHTBARER LOGIN BUTTON -->
-            <Button Width="96"
-                    Height="40"
-                    Background="Transparent"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    Focusable="False"
-                    Command="{Binding SetUserNameCommand}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Margin="275,355,0,0">
+                    <Button Command="{Binding SetUserNameCommand}"
+                            Content="STARTEN"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="Transparent" 
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Cursor="Hand" Margin="110,-30,110,35">
 
-                <!-- Eigenes Template (kein WPF-Hover) -->
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="Transparent">
-                            <ContentPresenter/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="Transparent">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
 
-                <!-- Skalierung -->
-                <Button.RenderTransform>
-                    <ScaleTransform x:Name="scale"
-                                    ScaleX="1"
-                                    ScaleY="1"/>
-                </Button.RenderTransform>
-
-                <!-- Hover steuert Glow + Scale -->
-                <Button.Triggers>
-
-                    <!-- MOUSE ENTER -->
-                    <EventTrigger RoutedEvent="MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-
-                                <!-- Glow ein -->
-                                <DoubleAnimation Storyboard.TargetName="LoginGlow"
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="1"
-                                                 Duration="0:0:0.15"/>
-
-                                <!-- Scale -->
-                                <DoubleAnimation To="1.05"
-                                                 Duration="0:0:0.1"
-                                                 Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                <DoubleAnimation To="1.05"
-                                                 Duration="0:0:0.1"
-                                                 Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-
-                    <!-- MOUSE LEAVE -->
-                    <EventTrigger RoutedEvent="MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-
-                                <!-- Glow aus -->
-                                <DoubleAnimation Storyboard.TargetName="LoginGlow"
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="0"
-                                                 Duration="0:0:0.15"/>
-
-                                <!-- Scale zurück -->
-                                <DoubleAnimation To="1"
-                                                 Duration="0:0:0.1"
-                                                 Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                <DoubleAnimation To="1"
-                                                 Duration="0:0:0.1"
-                                                 Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-
-                </Button.Triggers>
-
-            </Button>
-
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="LoginGlow" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="LoginGlow" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </Grid>
+            </Grid>
         </Grid>
-
     </Grid>
-
 </Page>
