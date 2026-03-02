@@ -26,7 +26,7 @@
                     <RowDefinition Height="60" />
                 </Grid.RowDefinitions>
 
-                <TextBox
+                <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="24" 
                          FontWeight="Bold"
                          Foreground="White"
@@ -43,6 +43,7 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </TextBox.RenderTransform>
+                    
                 </TextBox>
 
                 <Grid Grid.Row="3">
