@@ -17,6 +17,9 @@ namespace WerWirdMioWPF.ViewModel
         private int _currentStageIndex = 0;
         private Question _currentQuestion;
 
+
+        private Boolean usedThisRoundJoker;
+
         // UI Bindings
         public string CurrentQuestionText => _currentQuestion?.question ?? "Lade Frage...";
         public string Answer1Text => $"A: {_currentQuestion?.answer1}";
@@ -28,11 +31,31 @@ namespace WerWirdMioWPF.ViewModel
 
         public ICommand AnswerCommand { get; }
 
+        public ICommand SelectJokerCommand { get; }
+
         public QuestionsPageViewModel(GameService gameService) : base(gameService)
         {
             AnswerCommand = new DelegateCommand(OnAnswerSelected);
+            SelectJokerCommand = new DelegateCommand(OnSelectJoker);
             InitializeStages();
             LoadNextQuestion();
+
+            usedThisRoundJoker = false;
+        }
+
+
+        //50/50 JOKER
+        //Danielaffe joker (nur einer geht weg)
+
+        private void OnSelectJoker(object parameter)
+        {
+            if(usedThisRoundJoker)
+            {
+                MessageBox.Show("Du hast einen Joker bereits in dieser Runde verwendet!");
+                return;
+            }
+
+
         }
 
         private void InitializeStages()

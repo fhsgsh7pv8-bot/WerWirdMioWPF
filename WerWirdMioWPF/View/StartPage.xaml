@@ -4,95 +4,81 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:viewmodel="clr-namespace:WerWirdMioWPF.ViewModel"
-      mc:Ignorable="d"
+      mc:Ignorable="d" 
       d:DataContext="{d:DesignInstance Type=viewmodel:StartPageViewModel}"
       d:DesignHeight="1080" d:DesignWidth="1920">
 
-    <Grid>
-        <Grid VerticalAlignment="Top" 
-              HorizontalAlignment="Center" 
-              Width="599" Height="452" 
-              Margin="0,540,0,0">
+    <Viewbox Stretch="Uniform">
+        <Grid Width="1920" Height="1080">
 
-            <Image Source="/images/startpage.png" 
-                   Stretch="Uniform" Margin="-463,-288,-276,-71"/>
+            <Grid Width="800" Height="700" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Source="/images/startpage.png" Stretch="Uniform" />
 
-            <Grid Margin="0,150,0,60" Width="400">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="103" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="60" />
-                </Grid.RowDefinitions>
+                <Grid Margin="0,280,0,100">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
 
-                <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
-                         FontSize="24" 
-                         FontWeight="Bold"
-                         Foreground="White"
-                         Background="Transparent"
-                         BorderThickness="0"
-                         VerticalContentAlignment="Center"
-                         HorizontalContentAlignment="Center"
-                         CaretBrush="White" Margin="-151,-1,-59,41" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
-                    <TextBox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </TextBox.RenderTransform>
+                    <TextBox Grid.Row="0"
+                             Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="42" 
+                             FontWeight="Bold"
+                             Foreground="#FFE0B3"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center"
+                             CaretBrush="White" Margin="206,84,222,60" Grid.RowSpan="2"/>
 
-                </TextBox>
+                    <Grid Grid.Row="1" Width="227" HorizontalAlignment="Center" Margin="0,81,0,50" Grid.RowSpan="2">
+                        <Border x:Name="LoginGlow"
+                                Background="#FFFFD54F"
+                                CornerRadius="25"
+                                Opacity="0"
+                                IsHitTestVisible="False" Margin="-5,10,5,10">
+                            <Border.Effect>
+                                <BlurEffect Radius="30"/>
+                            </Border.Effect>
+                        </Border>
 
-                <Grid Grid.Row="3">
-                    <Border x:Name="LoginGlow"
-                            Width="180"
-                            Background="#66FFD54F"
-                            CornerRadius="25"
-                            Opacity="0"
-                            IsHitTestVisible="False" Margin="110,-35,110,30">
-                        <Border.Effect>
-                            <BlurEffect Radius="15"/>
-                        </Border.Effect>
-                    </Border>
+                        <Button Command="{Binding SetUserNameCommand}"
+                                Content="STARTEN"
+                                FontSize="28"
+                                FontWeight="Bold"
+                                Foreground="Transparent" 
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Cursor="Hand" Margin="0,0,10,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="Transparent">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
 
-                    <Button Command="{Binding SetUserNameCommand}"
-                            Content="STARTEN"
-                            FontSize="18"
-                            FontWeight="Bold"
-                            Foreground="Transparent" 
-                            Background="Transparent"
-                            BorderThickness="0"
-                            Cursor="Hand" Margin="20,-96,24,30">
-
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="Transparent">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="MouseEnter">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="LoginGlow" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                            <EventTrigger RoutedEvent="MouseLeave">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="LoginGlow" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="LoginGlow" Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="LoginGlow" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
 </Page>
