@@ -62,6 +62,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Assets\buttonsound.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\huther.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
