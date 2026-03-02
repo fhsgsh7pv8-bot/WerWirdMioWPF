@@ -135,7 +135,7 @@ namespace WerWirdMioWPF.ViewModel
         {
           
                
-                 return _stages[_currentStageIndex].PrizeAmount;
+                 return _stages[_currentStageIndex].PrizeAmount == 50 ? 0 : _stages[_currentStageIndex].PrizeAmount;
              
         }
 

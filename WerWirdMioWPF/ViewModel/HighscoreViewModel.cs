@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using WerWirdMioWPF.Model;
 using WerWirdMioWPF.Service;
 
@@ -16,7 +17,7 @@ namespace WerWirdMioWPF.ViewModel
 
 
         public readonly DelegateCommand _backcommand;
-        public DelegateCommand BackCommand { get { return _backcommand; } }
+        public ICommand BackCommand { get { return _backcommand; } }
 
 
 
@@ -32,7 +33,7 @@ namespace WerWirdMioWPF.ViewModel
         public void onBackCommand(object parameters)
         {
             // Zurück zur Startseite navigieren
-            onStartPage(gameService);
+            onPlayPage(gameService);
         }
     }
 }
