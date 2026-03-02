@@ -9,6 +9,22 @@
       Title="EndPage">
 
     <Grid>
-        
+        <MediaElement x:Name="BackgroundVideo"
+              LoadedBehavior="Manual" 
+              UnloadedBehavior="Stop"
+              Stretch="UniformToFill"
+              IsMuted="True" 
+              MediaEnded="BackgroundVideo_MediaEnded" />
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="SPIEL VORBEI" 
+                       FontSize="72" 
+                       Foreground="White" 
+                       FontWeight="Bold">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </StackPanel>
     </Grid>
 </Page>
