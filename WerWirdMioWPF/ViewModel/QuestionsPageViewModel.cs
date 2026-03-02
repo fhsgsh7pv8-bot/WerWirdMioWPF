@@ -226,6 +226,8 @@ namespace WerWirdMioWPF.ViewModel
                         MessageBox.Show("Diese Antwort wurde durch den Daniel Affe gegessen!");
                     }
 
+                    return;
+
                 }
 
 
