@@ -10,15 +10,75 @@
       d:DesignHeight="600" d:DesignWidth="920"
       Title="PlayPage">
 
+    <Page.Resources>
+        <Style x:Key="ImageButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <ContentPresenter />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.96" ScaleY="0.96"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <Grid>
-        <Button Content="Schnelles Spiel" 
-                Command="{Binding QuestionsPageCommand}" 
-                Margin="0,260,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Width="380" />
+        <Image Source="/images/tikiland.png" Stretch="UniformToFill" />
 
-        <Label HorizontalContentAlignment="Center" FontSize="25" Content="{Binding UserName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Center" Margin="0,118,0,0" VerticalAlignment="Top" Height="44" Width="156"/>
-        <Button Content="Benutzer wechseln" Margin="10,0,0,10" Command="{Binding ChangeUserCommand}" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="118" />
-        <Button Content="Top Spieler" Margin="792,0,0,15" Command="{Binding HighScorePageCommand}" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="118" />
-        <Image Margin="300,-7,300,438" Source="/images/Willkommen.png" Stretch="Fill"/>
+        <Image Source="/images/coconutgames.png" 
+               Width="211" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top" Margin="10,26,0,0" Height="229" />
 
+        <Image Source="/images/Willkommen.png" 
+               Width="280" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Top" 
+               Margin="0,41,0,0" />
+
+        <Label Content="{Binding UserName}" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Top" 
+               Margin="0,260,0,0"
+               FontSize="22" Foreground="Gold" FontWeight="Bold">
+            <Label.Effect>
+                <DropShadowEffect BlurRadius="5" ShadowDepth="2"/>
+            </Label.Effect>
+        </Label>
+
+        <Button Command="{Binding QuestionsPageCommand}"
+                Style="{StaticResource ImageButtonStyle}"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,0,0">
+            <Image Source="/images/spielstarten.png" Width="320"/>
+        </Button>
+
+        <Button Command="{Binding ChangeUserCommand}"
+                Style="{StaticResource ImageButtonStyle}"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,0,0,40">
+            <Image Source="/images/benutzerwechseln.png" Width="220"/>
+        </Button>
+
+        <Button Command="{Binding HighScorePageCommand}"
+                Style="{StaticResource ImageButtonStyle}"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40">
+            <Image Source="/images/topspieler.png" Width="220"/>
+        </Button>
     </Grid>
 </Page>

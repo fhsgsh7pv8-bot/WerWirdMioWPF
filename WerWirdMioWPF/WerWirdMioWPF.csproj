@@ -9,11 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\antworttafel.png" />
+    <None Remove="images\benutzerwechseln.png" />
     <None Remove="images\coconutgames.png" />
+    <None Remove="images\daniel.png" />
+    <None Remove="images\fragetafel.png" />
+    <None Remove="images\highscore.jpg" />
     <None Remove="images\nameeingeben.png" />
     <None Remove="images\name_eingeben.png" />
+    <None Remove="images\patrick.jpg" />
+    <None Remove="images\spielstarten.png" />
     <None Remove="images\startpage.png" />
     <None Remove="images\Tikiland.png" />
+    <None Remove="images\topspieler.png" />
     <None Remove="images\Willkommen.png" />
   </ItemGroup>
 
@@ -28,10 +36,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\antworttafel.png" />
+    <Resource Include="images\benutzerwechseln.png" />
     <Resource Include="images\coconutgames.png" />
-    <Resource Include="images\nameeingeben.png" />
+    <Resource Include="images\daniel.png" />
+    <Resource Include="images\fragetafel.png" />
+    <Resource Include="images\highscore.jpg" />
+    <Resource Include="images\patrick.jpg" />
+    <Resource Include="images\spielstarten.png" />
     <Resource Include="images\startpage.png" />
     <Resource Include="images\Tikiland.png" />
+    <Resource Include="images\topspieler.png" />
     <Resource Include="images\Willkommen.png" />
   </ItemGroup>
 

@@ -9,6 +9,33 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="920"
       Title="QuestionsPage" Background="#1c2042">
+
+    <Page.Resources>
+        <Style x:Key="WoodenButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image x:Name="BtnImage" Source="/images/antworttafel.png" Stretch="Fill"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,5"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="BtnImage" Property="Opacity" Value="0.8"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,55 +43,43 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Background="#f1a719" CornerRadius="10" Padding="10" HorizontalAlignment="Center" Margin="0,0,0,20">
+        <Border Grid.Row="0" Background="#f1a719" CornerRadius="10" Padding="15,5" HorizontalAlignment="Center" Margin="0,0,0,20">
             <TextBlock Text="{Binding CurrentPrizeDisplay}" FontSize="20" FontWeight="Bold" Foreground="Black"/>
         </Border>
 
-        <Border Grid.Row="1" Background="#0b132b" BorderBrush="#f1a719" BorderThickness="3" CornerRadius="20" Padding="20" Margin="50,0,50,30">
+        <Grid Grid.Row="1" Margin="20,0,20,30">
+            <Image Source="/images/fragetafel.png" Stretch="Fill"/>
             <TextBlock Text="{Binding CurrentQuestionText}" 
                        FontSize="26" Foreground="White" TextWrapping="Wrap" 
-                       HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
-        </Border>
+                       HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       TextAlignment="Center" Margin="50,30"/>
+        </Grid>
 
-        <Grid Grid.Row="2" Margin="30,0,30,20">
+        <Grid Grid.Row="2" Margin="10,0,10,10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="90"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="#0b132b"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontSize" Value="20"/>
-                    <Setter Property="BorderBrush" Value="#f1a719"/>
-                    <Setter Property="BorderThickness" Value="2"/>
-                    <Setter Property="Margin" Value="10"/>
-                    <Setter Property="Cursor" Value="Hand"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#f1a719"/>
-                            <Setter Property="Foreground" Value="Black"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Resources>
-
             <Button Grid.Row="0" Grid.Column="0" Content="{Binding Answer1Text}" 
-                    Command="{Binding AnswerCommand}" CommandParameter="1"/>
+                    Command="{Binding AnswerCommand}" CommandParameter="1" 
+                    Style="{StaticResource WoodenButtonStyle}" Margin="5"/>
 
             <Button Grid.Row="0" Grid.Column="1" Content="{Binding Answer2Text}" 
-                    Command="{Binding AnswerCommand}" CommandParameter="2"/>
+                    Command="{Binding AnswerCommand}" CommandParameter="2" 
+                    Style="{StaticResource WoodenButtonStyle}" Margin="5"/>
 
             <Button Grid.Row="1" Grid.Column="0" Content="{Binding Answer3Text}" 
-                    Command="{Binding AnswerCommand}" CommandParameter="3"/>
+                    Command="{Binding AnswerCommand}" CommandParameter="3" 
+                    Style="{StaticResource WoodenButtonStyle}" Margin="5"/>
 
             <Button Grid.Row="1" Grid.Column="1" Content="{Binding Answer4Text}" 
-                    Command="{Binding AnswerCommand}" CommandParameter="4"/>
+                    Command="{Binding AnswerCommand}" CommandParameter="4" 
+                    Style="{StaticResource WoodenButtonStyle}" Margin="5"/>
         </Grid>
     </Grid>
 </Page>

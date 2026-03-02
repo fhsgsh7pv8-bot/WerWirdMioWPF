@@ -23,7 +23,7 @@
 
             <!-- Navigation -->
             <Frame x:Name="_NavigationFrame"
-                   NavigationUIVisibility="Hidden"/>
+                   NavigationUIVisibility="Hidden" Navigated="_NavigationFrame_Navigated"/>
 
         </Grid>
     </Border>

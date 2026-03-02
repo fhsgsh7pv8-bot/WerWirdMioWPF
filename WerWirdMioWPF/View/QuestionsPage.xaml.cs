@@ -32,5 +32,9 @@ namespace WerWirdMioWPF.View
             DataContext = questionsPageViewModel;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

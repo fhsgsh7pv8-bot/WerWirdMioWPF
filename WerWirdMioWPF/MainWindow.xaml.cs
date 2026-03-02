@@ -30,5 +30,10 @@ namespace WerWirdMioWPF
 
             _NavigationFrame.Navigate(new StartPage(gameService));
         }
+
+        private void _NavigationFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
     }
 }
