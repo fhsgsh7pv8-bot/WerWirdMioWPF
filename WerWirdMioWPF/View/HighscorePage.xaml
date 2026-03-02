@@ -9,34 +9,107 @@
       mc:Ignorable="d" 
   d:DesignHeight="{x:Static SystemParameters.FullPrimaryScreenHeight}" d:DesignWidth="{x:Static SystemParameters.FullPrimaryScreenWidth}"
       Title="Highscores" Background="#1c2042">
+    <Page.Resources>
+        <Style x:Key="ImageButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="ButtonRoot" RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            </Grid.RenderTransform>
+
+                            <ContentPresenter x:Name="Content">
+                                <ContentPresenter.Effect>
+                                    <DropShadowEffect x:Name="GlowEffect" BlurRadius="0" ShadowDepth="0" Color="Gold" Opacity="0"/>
+                                </ContentPresenter.Effect>
+                            </ContentPresenter>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="Content" 
+                                                          Storyboard.TargetProperty="(ContentPresenter.Effect).(DropShadowEffect.BlurRadius)" 
+                                                          To="30" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetName="Content" 
+                                                          Storyboard.TargetProperty="(ContentPresenter.Effect).(DropShadowEffect.Opacity)" 
+                                                          To="1" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="Content" 
+                                                          Storyboard.TargetProperty="(ContentPresenter.Effect).(DropShadowEffect.BlurRadius)" 
+                                                          To="0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetName="Content" 
+                                                          Storyboard.TargetProperty="(ContentPresenter.Effect).(DropShadowEffect.Opacity)" 
+                                                          To="0" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonRoot" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Image Source="/images/highscore.jpg" Stretch="UniformToFill" />
 
-        <Image Source="/images/highscore.jpg" Stretch="Fill" Grid.RowSpan="2" HorizontalAlignment="Stretch" Height="NaN" VerticalAlignment="Stretch" Width="NaN"/>
-        <Button Content="Zurück" Command="{Binding BackCommand}"  HorizontalAlignment="Left" Margin="40,882,0,0" Grid.Row="1" VerticalAlignment="Top" Width="319" Height="133"/>
-        <ListView ItemsSource="{Binding TopScores}" Background="Transparent" BorderThickness="0" 
-                  Margin="0,268,0,10" Grid.Row="1" HorizontalAlignment="Center" Width="644">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border Background="#0b132b" BorderBrush="#f1a719" BorderThickness="2" 
-                            CornerRadius="10" Margin="0,5" Padding="15,10" Width="380">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding UserName}" Foreground="White" FontSize="20" FontWeight="Bold" Grid.Column="0"/>
-                            <TextBlock Text="{Binding TotalScore, StringFormat=\{0\} €}" Foreground="#f1a719" FontSize="20" FontWeight="Bold" Grid.Column="1"/>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Image Margin="623,0,623,856" Source="/images/Leaderboard.png" Stretch="Fill" Grid.Row="1"/>
-        <Image Margin="0,856,1525,41" Source="/images/backspace.png" Stretch="Fill" Grid.Row="1"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <ListView ItemsSource="{Binding TopScores}" 
+                  Background="Transparent" 
+                  BorderThickness="0" 
+                  HorizontalAlignment="Center">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#0b132b" BorderBrush="#f1a719" BorderThickness="2" 
+                            CornerRadius="10" Margin="0,5" Padding="15,10" Width="450">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding UserName}" Foreground="White" FontSize="22" FontWeight="Bold" Grid.Column="0"/>
+                                <TextBlock Text="{Binding TotalScore, StringFormat=\{0\} €}" Foreground="#f1a719" FontSize="22" FontWeight="Bold" Grid.Column="1"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+        <Button Command="{Binding BackCommand}"
+            Style="{StaticResource ImageButtonStyle}"
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Bottom"
+            Margin="30,0,0,30">
+            <Image Source="/images/backspace.png" Width="249" Height="82" />
+        </Button>
+        <Image Margin="623,66,623,790" Source="/images/Leaderboard.png" Stretch="Fill" Grid.Row="1"/>
+
     </Grid>
+
+
+
 </Page>
