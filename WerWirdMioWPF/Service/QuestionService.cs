@@ -47,7 +47,6 @@ namespace WerWirdMioWPF.Service
                 }
             }
 
-            MessageBox.Show("Fragen wurden geladen! " + JsonConvert.SerializeObject(questions));
 
         }
 
