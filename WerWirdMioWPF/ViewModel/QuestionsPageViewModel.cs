@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,14 +50,81 @@ namespace WerWirdMioWPF.ViewModel
 
         private void OnSelectJoker(object parameter)
         {
-            if(usedThisRoundJoker)
+            if (usedThisRoundJoker)
             {
                 MessageBox.Show("Du hast einen Joker bereits in dieser Runde verwendet!");
                 return;
             }
 
+            String type = parameter.ToString();
+
+            if (type.Equals("Danielaffe-Joker"))
+            {
+                usedThisRoundJoker = true;
+
+
+                foreach (int select in getRandomIntOrder(true)) {
+                    resetAnswerText(select);
+
+                }
+
+
+                if (type.Equals("50-50-Joker"))
+                {
+                    usedThisRoundJoker = true;
+
+                    foreach(int select in getRandomIntOrder(true).Take(2))
+                    {
+                        resetAnswerText(select);
+                    }
+
+
+                }
+            }
 
         }
+
+
+        private void resetAnswerText(int index)
+        {
+
+            switch (index)
+            {
+                case 1:
+                    _currentQuestion.answer1 = "";
+                    RaisePropertyChanged(nameof(Answer1Text));
+                    break;
+                case 2:
+                    _currentQuestion.answer2 = "";
+                    RaisePropertyChanged(nameof(Answer2Text));
+                    break;
+                case 3:
+                    _currentQuestion.answer3 = "";
+                    RaisePropertyChanged(nameof(Answer3Text));
+                    break;
+                case 4:
+                    _currentQuestion.answer4 = "";
+                    RaisePropertyChanged(nameof(Answer4Text));
+                    break;
+            }
+
+        }
+
+        private List<int> getRandomIntOrder(Boolean removeRightAnswer)
+        {
+            List<int> arr = new List<int>() { 1, 2, 3, 4 };
+            if(removeRightAnswer)
+                arr.Remove(_currentQuestion.correctAnswer);
+            
+            Random.Shared.Shuffle(System.Runtime.InteropServices.CollectionsMarshal.AsSpan(arr));
+
+            return arr;
+
+        }
+            
+
+
+
 
         private void InitializeStages()
         {
@@ -106,9 +174,12 @@ namespace WerWirdMioWPF.ViewModel
         {
             if (int.TryParse(parameter.ToString(), out int selectedAnswerIndex))
             {
+
+                usedThisRoundJoker = false; // Joker zurücksetzen für die nächste Frage
+
                 if (selectedAnswerIndex == _currentQuestion.correctAnswer)
                 {
-                    if (_currentStageIndex == 14) // 1 Millionen Frage erreicht
+                    if (_currentStageIndex == _stages.Count-1) // 1 Millionen Frage erreicht
                     {
                         EndGame(1000000, "Herzlichen Glückwunsch! Du bist MILLIONÄR!");
                     }
@@ -120,7 +191,6 @@ namespace WerWirdMioWPF.ViewModel
                 }
                 else
                 {
-                    // Falsche Antwort -> Zurückfallen auf die letzte Sicherheitsstufe
                     int wonAmount = GetSafeZoneAmount();
                     EndGame(wonAmount, $"Falsche Antwort! Die richtige Antwort war "+getRightAnswerText()+". Du hast " + wonAmount + " € erhalten!");
                 }
