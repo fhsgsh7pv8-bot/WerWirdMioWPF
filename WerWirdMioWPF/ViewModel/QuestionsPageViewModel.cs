@@ -215,10 +215,17 @@ namespace WerWirdMioWPF.ViewModel
         {
             if (int.TryParse(parameter.ToString(), out int selectedAnswerIndex))
             {
-                if(replacedAnswers.Contains(getText(selectedAnswerIndex)))
+                if (replacedAnswers.Contains(getText(selectedAnswerIndex)))
                 {
-                    MessageBox.Show("Diese Antwort wurde bereits durch einen Joker entfernt!");
-                    return;
+                    if(getText(selectedAnswerIndex).Equals("Nicht verfügbar"))
+                    {
+                        MessageBox.Show("Diese Antwort wurde durch den 50-50-Joker entfernt!");
+                    }
+                    else if(getText(selectedAnswerIndex).Equals("Daniel hat die Antwort gegessen"))
+                    {
+                        MessageBox.Show("Diese Antwort wurde durch den Daniel Affe entfernt!");
+                    }
+
                 }
 
 
@@ -241,7 +248,7 @@ namespace WerWirdMioWPF.ViewModel
                 else
                 {
                     int wonAmount = GetSafeZoneAmount();
-                    EndGame(wonAmount, $"Falsche Antwort! Die richtige Antwort war "+getRightAnswerText()+". Du hast " + wonAmount + " € erhalten!");
+                    EndGame(wonAmount, "Falsche Antwort! Die richtige Antwort war "+getRightAnswerText()+". Du hast " + wonAmount + " € erhalten!");
                 }
             }
         }
@@ -317,4 +324,9 @@ namespace WerWirdMioWPF.ViewModel
             onPlayPage(gameService);
         }
     }
+
+
+
+    
+
 }
