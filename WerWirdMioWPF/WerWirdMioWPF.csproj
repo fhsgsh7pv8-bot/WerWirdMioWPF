@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\50joker.png" />
+    <None Remove="images\affenjoker.png" />
     <None Remove="images\antworttafel.png" />
     <None Remove="images\backbutton.png" />
     <None Remove="images\backspace.png" />
@@ -39,6 +41,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\50joker.png" />
+    <Resource Include="images\affenjoker.png" />
     <Resource Include="images\antworttafel.png" />
     <Resource Include="images\backspace.png" />
     <Resource Include="images\benutzerwechseln.png" />
