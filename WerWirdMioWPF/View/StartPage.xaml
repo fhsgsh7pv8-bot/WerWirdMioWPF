@@ -9,10 +9,10 @@
       d:DesignHeight="600" d:DesignWidth="920">
 
     <Grid>
-        <Grid VerticalAlignment="Bottom" 
+        <Grid VerticalAlignment="Top" 
               HorizontalAlignment="Center" 
               Width="650" Height="500" 
-              Margin="0,0,0,20">
+              Margin="0,105,0,0">
 
             <Image Source="/images/startpage.png" 
                    Stretch="Uniform" 

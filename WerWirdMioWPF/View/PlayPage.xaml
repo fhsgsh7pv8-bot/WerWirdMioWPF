@@ -13,13 +13,12 @@
     <Grid>
         <Button Content="Schnelles Spiel" 
                 Command="{Binding QuestionsPageCommand}" 
-                Margin="0,177,270,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Right" Width="380" />
-
-        <Label HorizontalContentAlignment="Center" Content="Willkommen" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,68,0,0" VerticalAlignment="Top" Width="204" RenderTransformOrigin="0.493,0.578"/>
+                Margin="0,260,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Width="380" />
 
         <Label HorizontalContentAlignment="Center" FontSize="25" Content="{Binding UserName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Center" Margin="0,118,0,0" VerticalAlignment="Top" Height="44" Width="156"/>
         <Button Content="Benutzer wechseln" Margin="10,0,0,10" Command="{Binding ChangeUserCommand}" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="118" />
         <Button Content="Top Spieler" Margin="792,0,0,15" Command="{Binding HighScorePageCommand}" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="118" />
+        <Image Margin="300,-7,300,438" Source="/images/Willkommen.png" Stretch="Fill"/>
 
     </Grid>
 </Page>
