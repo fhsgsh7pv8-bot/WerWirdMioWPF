@@ -14,9 +14,9 @@
         <Style x:Key="WoodenButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="Foreground" Value="Gold"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FFE066"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontFamily" Value="Impact"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -26,7 +26,12 @@
                                     <DropShadowEffect x:Name="GlowEffect" BlurRadius="0" ShadowDepth="0" Color="#FFD700" Opacity="0"/>
                                 </Image.Effect>
                             </Image>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="45,10"/>
+
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="45,10">
+                                <ContentPresenter.Effect>
+                                    <DropShadowEffect BlurRadius="1" ShadowDepth="2" Color="Black" Opacity="0.7"/>
+                                </ContentPresenter.Effect>
+                            </ContentPresenter>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -35,24 +40,16 @@
                                 <Trigger.EnterActions>
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="BtnImage" 
-                                                             Storyboard.TargetProperty="(Image.Effect).(DropShadowEffect.BlurRadius)" 
-                                                             To="35" Duration="0:0:0.2"/>
-                                            <DoubleAnimation Storyboard.TargetName="BtnImage" 
-                                                             Storyboard.TargetProperty="(Image.Effect).(DropShadowEffect.Opacity)" 
-                                                             To="1" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetName="BtnImage" Storyboard.TargetProperty="(Image.Effect).(DropShadowEffect.BlurRadius)" To="35" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetName="BtnImage" Storyboard.TargetProperty="(Image.Effect).(DropShadowEffect.Opacity)" To="1" Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </Trigger.EnterActions>
                                 <Trigger.ExitActions>
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="BtnImage" 
-                                                             Storyboard.TargetProperty="(Image.Effect).(DropShadowEffect.BlurRadius)" 
-                                                             To="0" Duration="0:0:0.2"/>
-                                            <DoubleAnimation Storyboard.TargetName="BtnImage" 
-                                                             Storyboard.TargetProperty="(Image.Effect).(DropShadowEffect.Opacity)" 
-                                                             To="0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetName="BtnImage" Storyboard.TargetProperty="(Image.Effect).(DropShadowEffect.BlurRadius)" To="0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetName="BtnImage" Storyboard.TargetProperty="(Image.Effect).(DropShadowEffect.Opacity)" To="0" Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </Trigger.ExitActions>
@@ -121,13 +118,7 @@
                     <RowDefinition Height="1.2*"/>
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" 
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Top" 
-                        Margin="0,0,0,30"
-                        CornerRadius="15" 
-                        Padding="45,15"
-                        BorderThickness="4">
+                <Border Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,30" CornerRadius="15" Padding="45,15" BorderThickness="4">
                     <Border.BorderBrush>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                             <GradientStop Color="#8B4513" Offset="0.0"/>
@@ -144,15 +135,9 @@
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="4" Opacity="0.6" Color="Black"/>
                     </Border.Effect>
-
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="🗿 " FontSize="30" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding CurrentPrizeDisplay}" 
-                                   FontSize="36" 
-                                   FontWeight="ExtraBold" 
-                                   Foreground="#3D1F00" 
-                                   FontFamily="Impact"
-                                   VerticalAlignment="Center">
+                        <TextBlock Text="{Binding CurrentPrizeDisplay}" FontSize="36" FontWeight="ExtraBold" Foreground="#3D1F00" FontFamily="Impact" VerticalAlignment="Center">
                             <TextBlock.Effect>
                                 <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFD700" Opacity="1"/>
                             </TextBlock.Effect>
@@ -163,9 +148,18 @@
                 <Grid Grid.Row="1" VerticalAlignment="Center" Margin="20">
                     <Image Source="/images/fragetafel.png" Stretch="Fill" />
                     <TextBlock Text="{Binding CurrentQuestionText}" 
-                               FontSize="36" Foreground="Gold" TextWrapping="Wrap" 
-                               HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               TextAlignment="Center" Margin="90,50"/>
+                               FontSize="42" 
+                               FontFamily="Impact"
+                               Foreground="#FFF5E1" 
+                               TextWrapping="Wrap" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               TextAlignment="Center" 
+                               Margin="110,60">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="4" ShadowDepth="3" Color="#222" Opacity="0.8"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
                 </Grid>
 
                 <UniformGrid Grid.Row="2" Rows="2" Columns="2" Margin="10">
