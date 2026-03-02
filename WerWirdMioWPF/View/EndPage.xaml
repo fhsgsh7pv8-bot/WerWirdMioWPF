@@ -19,7 +19,7 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="DU BIST DER TIKI MEISTER!" 
                        FontSize="72" 
-                       Foreground="White" 
+                       Foreground="Gold" 
                        FontWeight="Bold">
                 <TextBlock.Effect>
                     <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black"/>
