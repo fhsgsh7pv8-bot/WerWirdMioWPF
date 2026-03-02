@@ -100,7 +100,7 @@ namespace WerWirdMioWPF.ViewModel
 
         public void onHighScorePage(object param)
         {
-            navigationService.Navigate(new HighscorePage());
+            navigationService.Navigate(new HighscorePage(gameService));
         }
 
         public void onEndPage(object param)
