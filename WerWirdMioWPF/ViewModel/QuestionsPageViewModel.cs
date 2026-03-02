@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using WerWirdMioWPF.Model;
 using WerWirdMioWPF.Service;
@@ -16,6 +17,10 @@ namespace WerWirdMioWPF.ViewModel
     {
         private List<GameStage> _stages;
         private int _currentStageIndex = 0;
+
+
+        private MediaPlayer _mediaPlayer = new MediaPlayer();
+
         private Question _currentQuestion;
 
 
@@ -92,11 +97,14 @@ namespace WerWirdMioWPF.ViewModel
                 usedThisRoundJoker = true;
 
 
-                foreach (int select in getRandomIntOrder(true).Take(1))
-                {
-                      replaceAnswerText("Daniel hat die Antwort gegessen",select);
+                int select = getRandomIntOrder(true).First(); // Nur eine Antwort entfernen, daher Take(1) und First()
 
-                }
+
+
+
+
+                      replaceAnswerText("Daniel hat die Antwort gegessen",select);
+                    playDanielSound();
 
             }
                 if (type.Equals("50-50-Joker"))
@@ -112,6 +120,28 @@ namespace WerWirdMioWPF.ViewModel
                 }
 
         }
+
+
+
+        private void playHuetherSound()
+        {
+            _mediaPlayer.Open(new Uri("Assets/huther.wav", UriKind.RelativeOrAbsolute));
+            _mediaPlayer.Play();
+        }
+
+
+        private void playRetrySound()
+        {
+            _mediaPlayer.Open(new Uri("Assets/neuerversuch.wav", UriKind.RelativeOrAbsolute));
+            _mediaPlayer.Play();
+        }
+
+        private void playDanielSound()
+        {
+            _mediaPlayer.Open(new Uri("Assets/leckerschmecker.wav", UriKind.RelativeOrAbsolute));
+            _mediaPlayer.Play();
+        }
+
 
 
         private void replaceAnswerText(String toReplaceWith, int index)
@@ -250,7 +280,18 @@ namespace WerWirdMioWPF.ViewModel
                 else
                 {
                     int wonAmount = GetSafeZoneAmount();
-                    EndGame(wonAmount, "Falsche Antwort! Die richtige Antwort war "+getRightAnswerText()+". Du hast " + wonAmount + " € erhalten!");
+
+
+                    String lowcase = UserName.ToLower(); 
+
+                    if (lowcase == "hüther" || lowcase == "carsten" || lowcase == "huether")
+                        playHuetherSound();
+                    else
+                        playRetrySound();
+
+
+
+                    EndGame(wonAmount, "Falsche Antwort! Die richtige Antwort war " + getRightAnswerText() + ". Du hast " + wonAmount + " € erhalten!");
                 }
             }
         }
