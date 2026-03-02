@@ -26,6 +26,7 @@
     <None Remove="images\spielstarten.png" />
     <None Remove="images\startpage.png" />
     <None Remove="images\Tikiland.png" />
+    <None Remove="images\tikimensch.png" />
     <None Remove="images\topspieler.png" />
     <None Remove="images\Willkommen.png" />
   </ItemGroup>
@@ -56,11 +57,27 @@
     <Resource Include="images\spielstarten.png" />
     <Resource Include="images\startpage.png" />
     <Resource Include="images\Tikiland.png" />
+    <Resource Include="images\tikimensch.png" />
     <Resource Include="images\topspieler.png" />
     <Resource Include="images\Willkommen.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Assets\huther.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\leckerschmecker.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\mainmusic.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\neuerversuch.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\startsound.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\tikiland-video.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

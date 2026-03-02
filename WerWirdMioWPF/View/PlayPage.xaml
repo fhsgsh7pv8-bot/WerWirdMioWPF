@@ -110,5 +110,15 @@
                 <Image Source="/images/topspieler.png" Width="350" Height="Auto"/>
             </Button>
         </Grid>
+        <Image Margin="130,540,1587,320" 
+       Source="/images/tikimensch.png" 
+       Stretch="Fill" 
+       Opacity="0.15">
+            <Image.Effect>
+                <DropShadowEffect BlurRadius="15" 
+                          ShadowDepth="0" 
+                          Color="#00FFCC" Opacity="1"/>
+            </Image.Effect>
+        </Image>
     </Grid>
 </Page>
