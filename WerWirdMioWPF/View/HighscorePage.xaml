@@ -7,7 +7,7 @@
       xmlns:viewmodel="clr-namespace:WerWirdMioWPF.ViewModel"
       d:DataContext="{d:DesignInstance Type=viewmodel:HighscorePageViewModel}"
       mc:Ignorable="d" 
-        d:DesignHeight="1080" d:DesignWidth="1920"
+  d:DesignHeight="{x:Static SystemParameters.FullPrimaryScreenHeight}" d:DesignWidth="{x:Static SystemParameters.FullPrimaryScreenWidth}"
       Title="Highscores" Background="#1c2042">
 
     <Grid>
