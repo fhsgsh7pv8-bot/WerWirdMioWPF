@@ -26,10 +26,8 @@
                                     <DropShadowEffect x:Name="GlowEffect" BlurRadius="0" ShadowDepth="0" Color="#FFD700" Opacity="0"/>
                                 </Image.Effect>
                             </Image>
-
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="45,10"/>
                         </Grid>
-
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
@@ -59,7 +57,6 @@
                                     </BeginStoryboard>
                                 </Trigger.ExitActions>
                             </Trigger>
-
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter TargetName="BtnImage" Property="Opacity" Value="0.8"/>
                             </Trigger>
@@ -124,9 +121,43 @@
                     <RowDefinition Height="1.2*"/>
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" Background="#f1a719" CornerRadius="12" Padding="30,12" 
-                        HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,30">
-                    <TextBlock Text="{Binding CurrentPrizeDisplay}" FontSize="32" FontWeight="Bold" Foreground="Black"/>
+                <Border Grid.Row="0" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Top" 
+                        Margin="0,0,0,30"
+                        CornerRadius="15" 
+                        Padding="45,15"
+                        BorderThickness="4">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#8B4513" Offset="0.0"/>
+                            <GradientStop Color="#D2B48C" Offset="0.5"/>
+                            <GradientStop Color="#5D2E0A" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="#FFB347" Offset="0"/>
+                            <GradientStop Color="#CC7A00" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="4" Opacity="0.6" Color="Black"/>
+                    </Border.Effect>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🗿 " FontSize="30" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding CurrentPrizeDisplay}" 
+                                   FontSize="36" 
+                                   FontWeight="ExtraBold" 
+                                   Foreground="#3D1F00" 
+                                   FontFamily="Impact"
+                                   VerticalAlignment="Center">
+                            <TextBlock.Effect>
+                                <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFD700" Opacity="1"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </StackPanel>
                 </Border>
 
                 <Grid Grid.Row="1" VerticalAlignment="Center" Margin="20">
@@ -146,7 +177,6 @@
             </Grid>
 
             <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0">
-
                 <Button Style="{StaticResource JokerButtonStyle}" Command="{Binding Joker50Command}" Margin="0,0,0,60">
                     <Image Source="/images/50joker.png" Stretch="Uniform" Height="233">
                         <Image.Effect>
@@ -156,13 +186,12 @@
                 </Button>
 
                 <Button Style="{StaticResource JokerButtonStyle}" Command="{Binding AffenJokerCommand}">
-                    <Image Source="/images/affenjoker.png" Stretch="Uniform" Height="252" Width="378">
+                    <Image Source="/images/affenjoker.png" Width="345" Stretch="Uniform" Height="249">
                         <Image.Effect>
                             <DropShadowEffect BlurRadius="20" ShadowDepth="5" Opacity="0.5"/>
                         </Image.Effect>
                     </Image>
                 </Button>
-
             </StackPanel>
         </Grid>
     </Grid>
