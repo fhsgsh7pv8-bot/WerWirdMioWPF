@@ -1,30 +1,21 @@
 ﻿<Window x:Class="WerWirdMioWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Background="Transparent"
-        WindowStyle="SingleBorderWindow"
-        Height="1080"
-        Width="1920">
+        Title="Wer Wird Millionär"
+        Height="1080" Width="1920"
+        WindowStartupLocation="CenterScreen">
 
-    <Border CornerRadius="10" ClipToBounds="True">
-        <Grid>
+    <Grid>
+        <Image Source="Images/Tikiland.png" Stretch="UniformToFill"/>
 
-            <!-- Hintergrundbild -->
-            <Image Source="Images/Tikiland.png"
-                   Stretch="UniformToFill"/>
+        <Image Source="Images/coconutgames.png" 
+               Width="250" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top" 
+               Margin="30"/>
 
-            <!-- Logo oben links -->
-            <Image Source="Images/coconutgames.png"
-                   Width="200"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Margin="20"/>
-
-            <!-- Navigation -->
-            <Frame x:Name="_NavigationFrame"
-                   NavigationUIVisibility="Hidden" Navigated="_NavigationFrame_Navigated"/>
-
-        </Grid>
-    </Border>
-
+        <Frame x:Name="_NavigationFrame" 
+               NavigationUIVisibility="Hidden" 
+               Background="Transparent"/>
+    </Grid>
 </Window>
