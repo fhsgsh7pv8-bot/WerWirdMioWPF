@@ -223,7 +223,7 @@ namespace WerWirdMioWPF.ViewModel
                     }
                     else if(getText(selectedAnswerIndex).Equals("Daniel hat die Antwort gegessen"))
                     {
-                        MessageBox.Show("Diese Antwort wurde durch den Daniel Affe entfernt!");
+                        MessageBox.Show("Diese Antwort wurde durch den Daniel Affe gegessen!");
                     }
 
                 }
