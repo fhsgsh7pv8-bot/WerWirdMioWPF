@@ -43,9 +43,9 @@
         <Image Source="/images/tikiland.png" Stretch="UniformToFill" />
 
         <Image Source="/images/coconutgames.png" 
-               Width="211" 
+               Width="203" 
                HorizontalAlignment="Left" 
-               VerticalAlignment="Top" Margin="10,26,0,0" Height="229" />
+               VerticalAlignment="Top" Margin="17,20,0,0" Height="209" />
 
         <Image Source="/images/Willkommen.png" 
                Width="280" 
