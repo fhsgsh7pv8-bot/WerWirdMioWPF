@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,22 @@ namespace WerWirdMioWPF.View
     {
         public EndPage()
         {
+
             InitializeComponent();
+
+            string videoPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "tikiland-video.mp4");
+
+            if (System.IO.File.Exists(videoPath))
+            {
+                BackgroundVideo.Source = new Uri(videoPath);
+                BackgroundVideo.Play();
+            }
+        }
+
+        private void BackgroundVideo_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            BackgroundVideo.Position = TimeSpan.FromMilliseconds(1);
+            BackgroundVideo.Play();
         }
     }
 }

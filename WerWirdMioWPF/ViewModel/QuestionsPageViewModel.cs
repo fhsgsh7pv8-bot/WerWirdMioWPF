@@ -63,12 +63,13 @@ namespace WerWirdMioWPF.ViewModel
                 usedThisRoundJoker = true;
 
 
-                foreach (int select in getRandomIntOrder(true)) {
+                foreach (int select in getRandomIntOrder(true))
+                {
                     resetAnswerText(select);
 
                 }
 
-
+            }
                 if (type.Equals("50-50-Joker"))
                 {
                     usedThisRoundJoker = true;
@@ -80,7 +81,6 @@ namespace WerWirdMioWPF.ViewModel
 
 
                 }
-            }
 
         }
 
@@ -175,7 +175,8 @@ namespace WerWirdMioWPF.ViewModel
             if (int.TryParse(parameter.ToString(), out int selectedAnswerIndex))
             {
 
-                usedThisRoundJoker = false; // Joker zurücksetzen für die nächste Frage
+                usedThisRoundJoker = false; 
+                // Joker zurücksetzen für die nächste Frage
 
                 if (selectedAnswerIndex == _currentQuestion.correctAnswer)
                 {

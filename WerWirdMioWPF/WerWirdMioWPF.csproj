@@ -55,4 +55,10 @@
     <Resource Include="images\Willkommen.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Assets\tikiland-video.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
