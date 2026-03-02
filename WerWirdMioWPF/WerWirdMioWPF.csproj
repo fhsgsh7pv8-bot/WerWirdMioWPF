@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <Folder Include="Fonts\" />
+    <Folder Include="Assets\" />
     <Folder Include="Theme\" />
     <Folder Include="Resource\" />
   </ItemGroup>
@@ -57,6 +58,12 @@
     <Resource Include="images\Tikiland.png" />
     <Resource Include="images\topspieler.png" />
     <Resource Include="images\Willkommen.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\tikiland-video.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
