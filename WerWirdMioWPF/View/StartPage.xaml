@@ -6,7 +6,7 @@
       xmlns:viewmodel="clr-namespace:WerWirdMioWPF.ViewModel"
       mc:Ignorable="d" 
       d:DataContext="{d:DesignInstance Type=viewmodel:StartPageViewModel}"
-      d:DesignHeight="1080" d:DesignWidth="1920">
+      d:DesignHeight="{x:Static SystemParameters.FullPrimaryScreenHeight}" d:DesignWidth="{x:Static SystemParameters.FullPrimaryScreenWidth}">
 
     <Viewbox Stretch="Uniform">
         <Grid Width="1920" Height="1080">
