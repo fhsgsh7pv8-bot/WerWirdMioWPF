@@ -10,11 +10,14 @@
 
   <ItemGroup>
     <None Remove="images\antworttafel.png" />
+    <None Remove="images\backbutton.png" />
+    <None Remove="images\backspace.png" />
     <None Remove="images\benutzerwechseln.png" />
     <None Remove="images\coconutgames.png" />
     <None Remove="images\daniel.png" />
     <None Remove="images\fragetafel.png" />
     <None Remove="images\highscore.jpg" />
+    <None Remove="images\Leaderboard.png" />
     <None Remove="images\nameeingeben.png" />
     <None Remove="images\name_eingeben.png" />
     <None Remove="images\patrick.jpg" />
@@ -37,11 +40,13 @@
 
   <ItemGroup>
     <Resource Include="images\antworttafel.png" />
+    <Resource Include="images\backspace.png" />
     <Resource Include="images\benutzerwechseln.png" />
     <Resource Include="images\coconutgames.png" />
     <Resource Include="images\daniel.png" />
     <Resource Include="images\fragetafel.png" />
     <Resource Include="images\highscore.jpg" />
+    <Resource Include="images\Leaderboard.png" />
     <Resource Include="images\patrick.jpg" />
     <Resource Include="images\spielstarten.png" />
     <Resource Include="images\startpage.png" />

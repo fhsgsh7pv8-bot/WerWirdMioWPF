@@ -17,12 +17,9 @@
         </Grid.RowDefinitions>
 
         <Image Source="/images/highscore.jpg" Stretch="Fill" Grid.RowSpan="2" HorizontalAlignment="Stretch" Height="NaN" VerticalAlignment="Stretch" Width="NaN"/>
-
-        <TextBlock Text="LEADERBOARD" FontSize="36" FontWeight="Bold" Foreground="#f1a719" 
-                   HorizontalAlignment="Center" Margin="0,20,0,20" Grid.Row="0"/>
-        <Button Content="Zurück" Command="{Binding BackCommand}"  HorizontalAlignment="Left" Margin="10,332,0,0" Grid.Row="1" VerticalAlignment="Top" Width="60"/>
+        <Button Content="Zurück" Command="{Binding BackCommand}"  HorizontalAlignment="Left" Margin="40,882,0,0" Grid.Row="1" VerticalAlignment="Top" Width="319" Height="133"/>
         <ListView ItemsSource="{Binding TopScores}" Background="Transparent" BorderThickness="0" 
-                  Margin="50,0,50,20" Grid.Row="1" HorizontalAlignment="Center" Width="400">
+                  Margin="0,268,0,10" Grid.Row="1" HorizontalAlignment="Center" Width="644">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Background="#0b132b" BorderBrush="#f1a719" BorderThickness="2" 
@@ -39,5 +36,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Image Margin="623,0,623,856" Source="/images/Leaderboard.png" Stretch="Fill" Grid.Row="1"/>
+        <Image Margin="0,856,1525,41" Source="/images/backspace.png" Stretch="Fill" Grid.Row="1"/>
     </Grid>
 </Page>
