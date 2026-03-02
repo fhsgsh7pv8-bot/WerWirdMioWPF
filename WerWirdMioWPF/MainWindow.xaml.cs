@@ -17,6 +17,8 @@ namespace WerWirdMioWPF
         {
             InitializeComponent();
 
+   
+
             // 1. Startsound abspielen
             PlayStartSound();
 
@@ -33,6 +35,7 @@ namespace WerWirdMioWPF
             // Event-Handler: Wenn der Startsound fertig ist, starte die Main-Music
             _mediaPlayer.MediaEnded += StartMainMusicLoop;
 
+            _mediaPlayer.Volume = 0.1; // Optional: Lautstärke anpassen
             _mediaPlayer.Play();
         }
 
@@ -48,9 +51,13 @@ namespace WerWirdMioWPF
             _mediaPlayer.MediaEnded += (s, args) =>
             {
                 _mediaPlayer.Position = TimeSpan.Zero; // Zurück zum Anfang
+
+                _mediaPlayer.Volume = 0.1; // Optional: Lautstärke anpassen
                 _mediaPlayer.Play();
             };
 
+
+            _mediaPlayer.Volume = 0.1; // Optional: Lautstärke anpassen
             _mediaPlayer.Play();
         }
 
