@@ -147,7 +147,7 @@
 
             <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0">
 
-                <Button Style="{StaticResource JokerButtonStyle}" Command="{Binding Joker50Command}" Margin="0,0,0,60">
+                <Button Style="{StaticResource JokerButtonStyle}" Command="{Binding SelectJokerCommand}" CommandParameter="50-50-Joker" Margin="0,0,0,60">
                     <Image Source="/images/50joker.png" Stretch="Uniform" Height="233">
                         <Image.Effect>
                             <DropShadowEffect BlurRadius="20" ShadowDepth="5" Opacity="0.5"/>
@@ -155,7 +155,7 @@
                     </Image>
                 </Button>
 
-                <Button Style="{StaticResource JokerButtonStyle}" Command="{Binding AffenJokerCommand}">
+                <Button Style="{StaticResource JokerButtonStyle}" Command="{Binding SelectJokerCommand}" CommandParameter="Danielaffe-Joker">
                     <Image Source="/images/affenjoker.png" Stretch="Uniform" Height="252" Width="378">
                         <Image.Effect>
                             <DropShadowEffect BlurRadius="20" ShadowDepth="5" Opacity="0.5"/>

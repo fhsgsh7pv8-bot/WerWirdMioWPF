@@ -43,7 +43,10 @@ namespace WerWirdMioWPF.Service
 
             if (existingUser != null)
             {
-                existingUser.TotalScore += wonAmount;
+                if(existingUser.TotalScore <= wonAmount)   
+                    {
+                    existingUser.TotalScore = wonAmount;
+                }
             }
             else
             {

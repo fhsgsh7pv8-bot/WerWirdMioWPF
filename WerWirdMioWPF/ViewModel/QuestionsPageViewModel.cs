@@ -23,16 +23,34 @@ namespace WerWirdMioWPF.ViewModel
 
         // UI Bindings
         public string CurrentQuestionText => _currentQuestion?.question ?? "Lade Frage...";
-        public string Answer1Text => $"A: {_currentQuestion?.answer1}";
-        public string Answer2Text => $"B: {_currentQuestion?.answer2}";
-        public string Answer3Text => $"C: {_currentQuestion?.answer3}";
-        public string Answer4Text => $"D: {_currentQuestion?.answer4}";
+        public string Answer1Text => formatTextForDisplay("A: " , _currentQuestion?.answer1);
+        public string Answer2Text => formatTextForDisplay("B: " , _currentQuestion?.answer2);
+        public string Answer3Text => formatTextForDisplay("C: " , _currentQuestion?.answer3);
+        public string Answer4Text => formatTextForDisplay("D: ",  _currentQuestion?.answer4);
 
         public string CurrentPrizeDisplay => $"Aktuelle Frage für: {_stages[_currentStageIndex].GameStageName}";
 
         public ICommand AnswerCommand { get; }
 
         public ICommand SelectJokerCommand { get; }
+
+
+
+        List<string> replacedAnswers = new List<string>();
+        List<string> usedJokers = new List<string>();
+
+
+
+        public String formatTextForDisplay(String prefix, String text)
+        {
+            if(replacedAnswers.Contains(text))
+            {
+                return text;
+            }
+
+            return prefix + text;
+        }
+
 
         public QuestionsPageViewModel(GameService gameService) : base(gameService)
         {
@@ -50,22 +68,33 @@ namespace WerWirdMioWPF.ViewModel
 
         private void OnSelectJoker(object parameter)
         {
+
+
             if (usedThisRoundJoker)
             {
-                MessageBox.Show("Du hast einen Joker bereits in dieser Runde verwendet!");
+                MessageBox.Show("Du kannst nur einen Joker pro Frage benutzen!");
                 return;
             }
 
             String type = parameter.ToString();
+
+
+            if(usedJokers.Contains(type))
+            {
+                MessageBox.Show("Du hast diesen Joker bereits verwendet!");
+                return;
+            }
+
+            usedJokers.Add(type);
 
             if (type.Equals("Danielaffe-Joker"))
             {
                 usedThisRoundJoker = true;
 
 
-                foreach (int select in getRandomIntOrder(true))
+                foreach (int select in getRandomIntOrder(true).Take(1))
                 {
-                    resetAnswerText(select);
+                      replaceAnswerText("Daniel hat die Antwort gegessen",select);
 
                 }
 
@@ -76,7 +105,7 @@ namespace WerWirdMioWPF.ViewModel
 
                     foreach(int select in getRandomIntOrder(true).Take(2))
                     {
-                        resetAnswerText(select);
+                         replaceAnswerText("Nicht verfügbar",select);
                     }
 
 
@@ -85,28 +114,34 @@ namespace WerWirdMioWPF.ViewModel
         }
 
 
-        private void resetAnswerText(int index)
+        private void replaceAnswerText(String toReplaceWith, int index)
         {
+
 
             switch (index)
             {
                 case 1:
-                    _currentQuestion.answer1 = "";
-                    RaisePropertyChanged(nameof(Answer1Text));
+                    _currentQuestion.answer1 = toReplaceWith;
+                    replacedAnswers.Add(toReplaceWith);
                     break;
                 case 2:
-                    _currentQuestion.answer2 = "";
-                    RaisePropertyChanged(nameof(Answer2Text));
+                    _currentQuestion.answer2 = toReplaceWith;
+                    replacedAnswers.Add(toReplaceWith);
                     break;
                 case 3:
-                    _currentQuestion.answer3 = "";
-                    RaisePropertyChanged(nameof(Answer3Text));
+                    _currentQuestion.answer3 = toReplaceWith;
+                    replacedAnswers.Add(toReplaceWith);
                     break;
                 case 4:
-                    _currentQuestion.answer4 = "";
-                    RaisePropertyChanged(nameof(Answer4Text));
+                    _currentQuestion.answer4 = toReplaceWith;
+                    replacedAnswers.Add(toReplaceWith);
                     break;
             }
+
+
+            updateDisplay();
+
+
 
         }
 
@@ -162,6 +197,12 @@ namespace WerWirdMioWPF.ViewModel
             }
 
 
+            updateDisplay();
+        }
+
+
+        public void updateDisplay()
+        {
             RaisePropertyChanged(nameof(CurrentQuestionText));
             RaisePropertyChanged(nameof(Answer1Text));
             RaisePropertyChanged(nameof(Answer2Text));
@@ -174,8 +215,15 @@ namespace WerWirdMioWPF.ViewModel
         {
             if (int.TryParse(parameter.ToString(), out int selectedAnswerIndex))
             {
+                if(replacedAnswers.Contains(getText(selectedAnswerIndex)))
+                {
+                    MessageBox.Show("Diese Antwort wurde bereits durch einen Joker entfernt!");
+                    return;
+                }
+
 
                 usedThisRoundJoker = false; 
+                replacedAnswers.Clear();
                 // Joker zurücksetzen für die nächste Frage
 
                 if (selectedAnswerIndex == _currentQuestion.correctAnswer)
@@ -198,6 +246,31 @@ namespace WerWirdMioWPF.ViewModel
             }
         }
 
+
+        public String getText(int index)
+        {
+
+
+            if (index == 1)
+            {
+                return Answer1Text;
+            }
+            if (index == 2)
+            {
+                return Answer2Text;
+            }
+            if (index == 3)
+            {
+                return Answer3Text;
+            }
+            if (index == 4)
+            {
+                return Answer4Text;
+            }
+
+
+            return "";
+        }
 
         public String getRightAnswerText()
         {
@@ -237,6 +310,7 @@ namespace WerWirdMioWPF.ViewModel
         {
             MessageBox.Show(message, "Spiel beendet", MessageBoxButton.OK, MessageBoxImage.Information);
 
+            usedJokers.Clear();
 
             gameService.highscoreService.AddOrUpdateScore(gameService.UserName, score);
 

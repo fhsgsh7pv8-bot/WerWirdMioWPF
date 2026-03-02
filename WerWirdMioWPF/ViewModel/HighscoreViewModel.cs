@@ -25,7 +25,7 @@ namespace WerWirdMioWPF.ViewModel
         public HighscorePageViewModel(GameService gameService) : base(gameService)
         {
             // Die sortierte Liste aus dem Service in die UI-Collection laden
-            TopScores = new ObservableCollection<UserScore>(gameService.highscoreService.Leaderboard.Take(8));
+            TopScores = new ObservableCollection<UserScore>(gameService.highscoreService.Leaderboard.Take(7));
             _backcommand = new DelegateCommand(onBackCommand);
         }
 
