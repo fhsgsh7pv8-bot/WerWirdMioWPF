@@ -19,26 +19,23 @@ namespace WerWirdMioWPF
         private GameService _gameService;
 
         public MainWindow()
-
-         
         {
-
-            _mediaPlayer.Volume = 0.07;
             InitializeComponent();
 
-   
+            // Service initialisieren (Wichtig, sonst gibt es eine NullReferenceException)
+            _gameService = new GameService();
 
-            // 1. Startsound abspielen
-            PlayStartSound();
+            // Lautstärke zentral einstellen
+            _backgroundPlayer.Volume = 0.07;
+            _uiPlayer.Volume = 0.2;
 
-            // 2. Globaler Event-Handler für ALLE Buttons im Spiel
-            // Registriert den Sound-Effekt zentral für das gesamte Fenster
+            // 1. Globaler Event-Handler für ALLE Buttons im Fenster
             this.AddHandler(Button.ClickEvent, new RoutedEventHandler(OnGlobalButtonClicked));
 
-            // 3. Musik-Sequenz starten (Startsound -> Main Music)
+            // 2. Musik-Sequenz starten (Startsound -> Main Music)
             PlayStartSequence();
 
-            // 4. Erste Seite laden
+            // 3. Erste Seite laden
             _NavigationFrame.Navigate(new StartPage(_gameService));
         }
 
@@ -55,7 +52,7 @@ namespace WerWirdMioWPF
 
         private void TransitionToMainMusic(object sender, EventArgs e)
         {
-            // Handler entfernen, damit er nicht erneut feuert
+            // Alten Handler entfernen
             _backgroundPlayer.MediaEnded -= TransitionToMainMusic;
 
             // Endlos-Musik laden
@@ -64,13 +61,19 @@ namespace WerWirdMioWPF
             // Loop-Logik: Immer wieder von vorne abspielen
             _backgroundPlayer.MediaEnded += (s, args) =>
             {
-                _mediaPlayer.Position = TimeSpan.Zero; // Zurück zum Anfang
-
-                _mediaPlayer.Play();
+                _backgroundPlayer.Position = TimeSpan.Zero;
+                _backgroundPlayer.Play();
             };
 
+            _backgroundPlayer.Play();
+        }
 
-            _mediaPlayer.Play();
+        private void OnGlobalButtonClicked(object sender, RoutedEventArgs e)
+        {
+            // Sound für Klicks abspielen
+            _uiPlayer.Open(new Uri("Assets/click.mp3", UriKind.Relative));
+            _uiPlayer.Stop(); // Zurücksetzen, falls schnell hintereinander geklickt wird
+            _uiPlayer.Play();
         }
 
         private void _NavigationFrame_Navigated(object sender, NavigationEventArgs e)
