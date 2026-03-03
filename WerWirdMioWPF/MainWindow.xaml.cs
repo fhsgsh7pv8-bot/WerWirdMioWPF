@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Navigation;
@@ -39,7 +38,7 @@ namespace WerWirdMioWPF
             // Startsound laden
             _backgroundPlayer.Open(new Uri("Assets/startsound.mp3", UriKind.Relative));
 
-           // wechsle zur Main-Music
+            // wechsle zur Main-Music
             _backgroundPlayer.MediaEnded += TransitionToMainMusic;
 
             _backgroundPlayer.Play();
@@ -87,7 +86,7 @@ namespace WerWirdMioWPF
 
         private void _NavigationFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            
+
         }
     }
 }

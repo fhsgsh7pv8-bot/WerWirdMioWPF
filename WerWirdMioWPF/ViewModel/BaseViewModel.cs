@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Navigation;
-using WerWirdMioWPF.File; // Falls für das Auskommentierte benötigt
-using WerWirdMioWPF.Model;
 using WerWirdMioWPF.Service;
 using WerWirdMioWPF.View;
 
@@ -47,7 +43,7 @@ namespace WerWirdMioWPF.ViewModel
 
         private string _username;
 
-        public GameService gameService { get;  }
+        public GameService gameService { get; }
         public QuestionService questionService;
 
         public BaseViewModel(GameService gameService)

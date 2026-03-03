@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using WerWirdMioWPF.Model;
 using WerWirdMioWPF.Service;
@@ -21,7 +16,7 @@ namespace WerWirdMioWPF.ViewModel
 
 
 
-     
+
         public HighscorePageViewModel(GameService gameService) : base(gameService)
         {
             // Die sortierte Liste aus dem Service in die UI-Collection laden

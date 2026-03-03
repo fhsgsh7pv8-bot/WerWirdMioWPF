@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace WerWirdMioWPF
 {
@@ -16,7 +11,8 @@ namespace WerWirdMioWPF
 
         public String Name
         {
-            get { return name; } set { name = value; OnPropertyChanged("Name"); }
+            get { return name; }
+            set { name = value; OnPropertyChanged("Name"); }
         }
 
         public String Password

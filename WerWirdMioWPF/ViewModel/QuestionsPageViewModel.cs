@@ -1,16 +1,7 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Navigation;
 using WerWirdMioWPF.Model;
 using WerWirdMioWPF.Service;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace WerWirdMioWPF.ViewModel
 {
@@ -28,10 +19,10 @@ namespace WerWirdMioWPF.ViewModel
 
         // UI Bindings
         public string CurrentQuestionText => _currentQuestion?.question ?? "Lade Frage...";
-        public string Answer1Text => formatTextForDisplay("A: " , _currentQuestion?.answer1);
-        public string Answer2Text => formatTextForDisplay("B: " , _currentQuestion?.answer2);
-        public string Answer3Text => formatTextForDisplay("C: " , _currentQuestion?.answer3);
-        public string Answer4Text => formatTextForDisplay("D: ",  _currentQuestion?.answer4);
+        public string Answer1Text => formatTextForDisplay("A: ", _currentQuestion?.answer1);
+        public string Answer2Text => formatTextForDisplay("B: ", _currentQuestion?.answer2);
+        public string Answer3Text => formatTextForDisplay("C: ", _currentQuestion?.answer3);
+        public string Answer4Text => formatTextForDisplay("D: ", _currentQuestion?.answer4);
 
         public string CurrentPrizeDisplay => $"Aktuelle Frage für: {_stages[_currentStageIndex].GameStageName}";
 
@@ -51,7 +42,7 @@ namespace WerWirdMioWPF.ViewModel
 
         public String formatTextForDisplay(String prefix, String text)
         {
-            if(replacedAnswers.Contains(text))
+            if (replacedAnswers.Contains(text))
             {
                 return text;
             }
@@ -74,7 +65,7 @@ namespace WerWirdMioWPF.ViewModel
 
         public void onBack(object para)
         {
-            if (MessageBox.Show("Möchtest du wirklich zurück zum Hauptmenü? Du würdest "+GetSafeZoneAmount()+"€ bekommen!", "Bestätigung", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Möchtest du wirklich zurück zum Hauptmenü? Du würdest " + GetSafeZoneAmount() + "€ bekommen!", "Bestätigung", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 resetJokers();
 
@@ -90,7 +81,7 @@ namespace WerWirdMioWPF.ViewModel
             usedThisRoundJoker = false;
             replacedAnswers.Clear();
             usedJokers.Clear();
-        }   
+        }
 
         //50/50 JOKER
         //Danielaffe joker (nur einer geht weg)
@@ -108,7 +99,7 @@ namespace WerWirdMioWPF.ViewModel
             String type = parameter.ToString();
 
 
-            if(usedJokers.Contains(type))
+            if (usedJokers.Contains(type))
             {
                 MessageBox.Show("Du hast diesen Joker bereits verwendet!");
                 return;
@@ -127,21 +118,21 @@ namespace WerWirdMioWPF.ViewModel
 
 
 
-                      replaceAnswerText("Daniel hat die Antwort gegessen",select);
-                       gameService.soundService.playDanielSound();
+                replaceAnswerText("Daniel hat die Antwort gegessen", select);
+                gameService.soundService.playDanielSound();
 
             }
-                if (type.Equals("50-50-Joker"))
+            if (type.Equals("50-50-Joker"))
+            {
+                usedThisRoundJoker = true;
+
+                foreach (int select in getRandomIntOrder(true).Take(2))
                 {
-                    usedThisRoundJoker = true;
-
-                    foreach(int select in getRandomIntOrder(true).Take(2))
-                    {
-                         replaceAnswerText("Nicht verfügbar",select);
-                    }
-
-
+                    replaceAnswerText("Nicht verfügbar", select);
                 }
+
+
+            }
 
         }
 
@@ -185,15 +176,15 @@ namespace WerWirdMioWPF.ViewModel
         private List<int> getRandomIntOrder(Boolean removeRightAnswer)
         {
             List<int> arr = new List<int>() { 1, 2, 3, 4 };
-            if(removeRightAnswer)
+            if (removeRightAnswer)
                 arr.Remove(_currentQuestion.correctAnswer);
-            
+
             Random.Shared.Shuffle(System.Runtime.InteropServices.CollectionsMarshal.AsSpan(arr));
 
             return arr;
 
         }
-            
+
 
 
 
@@ -213,7 +204,7 @@ namespace WerWirdMioWPF.ViewModel
                 new GameStage(8, "4.000 €", 4000),
                 new GameStage(9, "8.000 €", 8000),
                 new GameStage(10, "16.000 €", 16000),
-                new GameStage(11, "32.000 €", 32000, true), 
+                new GameStage(11, "32.000 €", 32000, true),
                 new GameStage(12, "64.000 €", 64000),
                 new GameStage(13, "125.000 €", 125000),
                 new GameStage(14, "500.000 €", 500000),
@@ -229,7 +220,7 @@ namespace WerWirdMioWPF.ViewModel
 
             if (_currentQuestion == null)
             {
-                MessageBox.Show("Fehler: Keine Frage für Stufe "+ currentDifficulty + " gefunden!");
+                MessageBox.Show("Fehler: Keine Frage für Stufe " + currentDifficulty + " gefunden!");
                 return;
             }
 
@@ -254,11 +245,11 @@ namespace WerWirdMioWPF.ViewModel
             {
                 if (replacedAnswers.Contains(getText(selectedAnswerIndex)))
                 {
-                    if(getText(selectedAnswerIndex).Equals("Nicht verfügbar"))
+                    if (getText(selectedAnswerIndex).Equals("Nicht verfügbar"))
                     {
                         MessageBox.Show("Diese Antwort wurde durch den 50-50-Joker entfernt!");
                     }
-                    else if(getText(selectedAnswerIndex).Equals("Daniel hat die Antwort gegessen"))
+                    else if (getText(selectedAnswerIndex).Equals("Daniel hat die Antwort gegessen"))
                     {
                         MessageBox.Show("Diese Antwort wurde durch den Daniel Affe gegessen!");
                     }
@@ -270,7 +261,7 @@ namespace WerWirdMioWPF.ViewModel
                 resetJokers();
                 // Joker zurücksetzen für die nächste Frage
 
-                if (selectedAnswerIndex == _currentQuestion.correctAnswer )
+                if (selectedAnswerIndex == _currentQuestion.correctAnswer)
                 {
                     if (_currentStageIndex == _stages.Count - 1) // 1 Millionen Frage erreicht
                     {
@@ -287,7 +278,7 @@ namespace WerWirdMioWPF.ViewModel
                     int wonAmount = GetSafeZoneAmount();
 
 
-                  if(UserName == null)
+                    if (UserName == null)
                     {
                         this.gameService.soundService.playRetrySound();
 
@@ -305,7 +296,7 @@ namespace WerWirdMioWPF.ViewModel
 
 
                     }
-                      
+
 
 
                     EndGame(wonAmount, "Falsche Antwort! Die richtige Antwort war " + getRightAnswerText() + ". Du hast " + wonAmount + " € erhalten!");
@@ -348,15 +339,15 @@ namespace WerWirdMioWPF.ViewModel
             {
                 return _currentQuestion.answer1;
             }
-            if(correctAnswerIndex == 2)
+            if (correctAnswerIndex == 2)
             {
                 return _currentQuestion.answer2;
             }
-            if(correctAnswerIndex == 3)
+            if (correctAnswerIndex == 3)
             {
                 return _currentQuestion.answer3;
             }
-            if(correctAnswerIndex == 4)
+            if (correctAnswerIndex == 4)
             {
                 return _currentQuestion.answer4;
             }
@@ -367,7 +358,7 @@ namespace WerWirdMioWPF.ViewModel
 
         private int GetSafeZoneAmount()
         {
-          return _stages[_currentStageIndex].PrizeAmount == 50 ? 0 : _stages[_currentStageIndex].PrizeAmount;    
+            return _stages[_currentStageIndex].PrizeAmount == 50 ? 0 : _stages[_currentStageIndex].PrizeAmount;
         }
 
         private void EndGame(int score, string message)
@@ -382,7 +373,7 @@ namespace WerWirdMioWPF.ViewModel
                 onEndPage(gameService);
             }
             else
-            { 
+            {
                 onLosePage("Erreichte Punkte: " + score);
             }
         }
@@ -390,6 +381,6 @@ namespace WerWirdMioWPF.ViewModel
 
 
 
-    
+
 
 }

@@ -1,10 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WerWirdMioWPF.Model;
 
 namespace WerWirdMioWPF.Service
@@ -22,7 +16,7 @@ namespace WerWirdMioWPF.Service
 
         private void LoadScores()
         {
-           
+
             if (System.IO.File.Exists(FilePath))
             {
                 string json = System.IO.File.ReadAllText(FilePath);
@@ -43,8 +37,8 @@ namespace WerWirdMioWPF.Service
 
             if (existingUser != null)
             {
-                if(existingUser.TotalScore <= wonAmount)   
-                    {
+                if (existingUser.TotalScore <= wonAmount)
+                {
                     existingUser.TotalScore = wonAmount;
                 }
             }
