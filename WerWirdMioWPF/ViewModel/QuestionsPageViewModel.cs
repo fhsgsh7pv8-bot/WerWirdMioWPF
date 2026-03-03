@@ -20,7 +20,6 @@ namespace WerWirdMioWPF.ViewModel
         private int _currentStageIndex = 0;
 
 
-        private MediaPlayer _mediaPlayer = new MediaPlayer();
 
         private Question _currentQuestion;
 
@@ -77,14 +76,21 @@ namespace WerWirdMioWPF.ViewModel
         {
             if (MessageBox.Show("Möchtest du wirklich zurück zum Hauptmenü? Du würdest "+GetSafeZoneAmount()+"€ bekommen!", "Bestätigung", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                usedJokers.Clear();
+                resetJokers();
 
-                replacedAnswers.Clear();
-                usedThisRoundJoker = false;
                 gameService.highscoreService.AddOrUpdateScore(gameService.UserName, GetSafeZoneAmount());
+
                 onPlayPage(gameService);
             }
         }
+
+
+        public void resetJokers()
+        {
+            usedThisRoundJoker = false;
+            replacedAnswers.Clear();
+            usedJokers.Clear();
+        }   
 
         //50/50 JOKER
         //Danielaffe joker (nur einer geht weg)
@@ -122,7 +128,7 @@ namespace WerWirdMioWPF.ViewModel
 
 
                       replaceAnswerText("Daniel hat die Antwort gegessen",select);
-                    playDanielSound();
+                       gameService.soundService.playDanielSound();
 
             }
                 if (type.Equals("50-50-Joker"))
@@ -141,24 +147,7 @@ namespace WerWirdMioWPF.ViewModel
 
 
 
-        private void playHuetherSound()
-        {
-            _mediaPlayer.Open(new Uri("Assets/huther.wav", UriKind.RelativeOrAbsolute));
-            _mediaPlayer.Play();
-        }
 
-
-        private void playRetrySound()
-        {
-            _mediaPlayer.Open(new Uri("Assets/neuerversuch.wav", UriKind.RelativeOrAbsolute));
-            _mediaPlayer.Play();
-        }
-
-        private void playDanielSound()
-        {
-            _mediaPlayer.Open(new Uri("Assets/leckerschmecker.wav", UriKind.RelativeOrAbsolute));
-            _mediaPlayer.Play();
-        }
 
 
 
@@ -278,9 +267,7 @@ namespace WerWirdMioWPF.ViewModel
 
                 }
 
-
-                usedThisRoundJoker = false; 
-                replacedAnswers.Clear();
+                resetJokers();
                 // Joker zurücksetzen für die nächste Frage
 
                 if (selectedAnswerIndex == _currentQuestion.correctAnswer )
@@ -302,7 +289,7 @@ namespace WerWirdMioWPF.ViewModel
 
                   if(UserName == null)
                     {
-                        playRetrySound();
+                        this.gameService.soundService.playRetrySound();
 
                     }
 
@@ -312,9 +299,9 @@ namespace WerWirdMioWPF.ViewModel
                         String lowcase = UserName.ToLower();
 
                         if (lowcase == "hüther" || lowcase == "carsten" || lowcase == "huether")
-                            playHuetherSound();
+                            this.gameService.soundService.playHuetherSound();
                         else
-                            playRetrySound();
+                            this.gameService.soundService.playRetrySound();
 
 
                     }
@@ -380,39 +367,23 @@ namespace WerWirdMioWPF.ViewModel
 
         private int GetSafeZoneAmount()
         {
-          
-               
-                 return _stages[_currentStageIndex].PrizeAmount == 50 ? 0 : _stages[_currentStageIndex].PrizeAmount;
-             
+          return _stages[_currentStageIndex].PrizeAmount == 50 ? 0 : _stages[_currentStageIndex].PrizeAmount;    
         }
 
         private void EndGame(int score, string message)
-
-
-
-
         {
 
-
-
-         
-            usedJokers.Clear();
+            resetJokers();
 
             gameService.highscoreService.AddOrUpdateScore(gameService.UserName, score);
-
-
 
             if (score == 1000000)
             {
                 onEndPage(gameService);
-
             }
             else
-            {
+            { 
                 onLosePage("Erreichte Punkte: " + score);
-
-              //  MessageBox.Show(message, "Spiel beendet", MessageBoxButton.OK, MessageBoxImage.Information);
-
             }
         }
     }

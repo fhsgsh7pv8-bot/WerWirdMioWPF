@@ -10,16 +10,24 @@ namespace WerWirdMioWPF.Service
     public class GameService
     {
 
-        public QuestionService questionService = new QuestionService();
-        public NavigationService navigationService;
-        public HighscoreService highscoreService = new HighscoreService(); 
+        public QuestionService questionService { get; }
+        public SoundService soundService { get; }
+        public NavigationService navigationService { get; }
+        public HighscoreService highscoreService { get; }
 
         public String UserName;
 
         public GameService()
         {
+            questionService = new QuestionService();
+            soundService = new SoundService();
+            highscoreService = new HighscoreService();
+
             questionService.loadQuestions();
         }
+
+
+        
 
 
     }
