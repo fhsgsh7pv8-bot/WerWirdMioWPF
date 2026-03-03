@@ -267,7 +267,7 @@ namespace WerWirdMioWPF.ViewModel
 
                 if (selectedAnswerIndex == _currentQuestion.correctAnswer)
                 {
-                    if (_currentStageIndex == _stages.Count-1) // 1 Millionen Frage erreicht
+                    if (_currentStageIndex == _stages.Count - 1) // 1 Millionen Frage erreicht
                     {
                         EndGame(1000000, "Herzlichen Glückwunsch! Du bist MILLIONÄR!");
                     }
@@ -282,13 +282,25 @@ namespace WerWirdMioWPF.ViewModel
                     int wonAmount = GetSafeZoneAmount();
 
 
-                    String lowcase = UserName.ToLower(); 
-
-                    if (lowcase == "hüther" || lowcase == "carsten" || lowcase == "huether")
-                        playHuetherSound();
-                    else
+                  if(UserName == null)
+                    {
                         playRetrySound();
 
+                    }
+
+
+                    if (UserName != null)
+                    {
+                        String lowcase = UserName.ToLower();
+
+                        if (lowcase == "hüther" || lowcase == "carsten" || lowcase == "huether")
+                            playHuetherSound();
+                        else
+                            playRetrySound();
+
+
+                    }
+                      
 
 
                     EndGame(wonAmount, "Falsche Antwort! Die richtige Antwort war " + getRightAnswerText() + ". Du hast " + wonAmount + " € erhalten!");
