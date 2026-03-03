@@ -393,7 +393,7 @@ namespace WerWirdMioWPF.ViewModel
             {
                 onLosePage("Erreichte Punkte: " + score);
 
-                MessageBox.Show(message, "Spiel beendet", MessageBoxButton.OK, MessageBoxImage.Information);
+              //  MessageBox.Show(message, "Spiel beendet", MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
         }
