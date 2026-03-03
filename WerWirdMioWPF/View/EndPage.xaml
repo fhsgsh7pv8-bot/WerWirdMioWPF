@@ -3,28 +3,59 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WerWirdMioWPF.View"
       mc:Ignorable="d" 
-      d:DesignHeight="{x:Static SystemParameters.FullPrimaryScreenHeight}" d:DesignWidth="{x:Static SystemParameters.FullPrimaryScreenWidth}"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="EndPage">
+
+    <Page.Resources>
+        <Storyboard x:Key="GtaMissionPassedAnim">
+            <DoubleAnimation Storyboard.TargetName="RespectImage"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" 
+                             Duration="0:0:1" />
+
+            <DoubleAnimation Storyboard.TargetName="ImageScale"
+                             Storyboard.TargetProperty="ScaleX"
+                             From="2.5" To="1.0" 
+                             Duration="0:0:0.8">
+                <DoubleAnimation.EasingFunction>
+                    <QuadraticEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Storyboard.TargetName="ImageScale"
+                             Storyboard.TargetProperty="ScaleY"
+                             From="2.5" To="1.0" 
+                             Duration="0:0:0.8">
+                <DoubleAnimation.EasingFunction>
+                    <QuadraticEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource GtaMissionPassedAnim}" />
+        </EventTrigger>
+    </Page.Triggers>
 
     <Grid>
         <MediaElement x:Name="BackgroundVideo"
-              LoadedBehavior="Manual" 
-              UnloadedBehavior="Stop"
-              Stretch="UniformToFill"
-              IsMuted="True" 
-              MediaEnded="BackgroundVideo_MediaEnded" />
+                      LoadedBehavior="Manual" 
+                      UnloadedBehavior="Stop"
+                      Stretch="UniformToFill"
+                      IsMuted="True" 
+                      MediaEnded="BackgroundVideo_MediaEnded" />
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="DU BIST DER TIKI MEISTER!" 
-                       FontSize="72" 
-                       Foreground="Gold" 
-                       FontWeight="Bold">
-                <TextBlock.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black"/>
-                </TextBlock.Effect>
-            </TextBlock>
-        </StackPanel>
+        <Image x:Name="RespectImage" 
+               Source="/images/respect.png" 
+               Stretch="None" 
+               Opacity="0"
+               RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <ScaleTransform x:Name="ImageScale" ScaleX="1" ScaleY="1" />
+            </Image.RenderTransform>
+        </Image>
     </Grid>
 </Page>
