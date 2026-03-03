@@ -98,6 +98,7 @@ mc:Ignorable="d"
 
 
         </StackPanel>
+        <Image Margin="626,69,626,397" Source="/images/daniel.png" Stretch="Fill"/>
 
 
 

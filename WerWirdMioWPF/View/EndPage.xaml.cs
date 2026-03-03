@@ -6,7 +6,6 @@ namespace WerWirdMioWPF.View
 {
     public partial class EndPage : Page
     {
-        // Separater Player für den End-Sound
         private MediaPlayer _endSoundPlayer = new MediaPlayer();
 
         public EndPage()
@@ -30,13 +29,12 @@ namespace WerWirdMioWPF.View
         {
             try
             {
-                // Pfad zur missionpassed.mp3 
                 string soundPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "missionpassed.mp3");
 
                 if (System.IO.File.Exists(soundPath))
                 {
                     _endSoundPlayer.Open(new Uri(soundPath));
-                    _endSoundPlayer.Volume = 0.5; // Lautstärke auf 50%
+                    _endSoundPlayer.Volume = 0.5; 
                     _endSoundPlayer.Play();
                 }
             }
