@@ -70,12 +70,7 @@
             <Image Source="/images/backspace.png" Width="200" />
         </Button>
 
-        <MediaElement x:Name="BackgroundVideo"
-              LoadedBehavior="Manual" 
-              UnloadedBehavior="Stop"
-              Stretch="UniformToFill"
-              IsMuted="True" 
-              MediaEnded="BackgroundVideo_MediaEnded" />
+      
 
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="VERLOREN" 
