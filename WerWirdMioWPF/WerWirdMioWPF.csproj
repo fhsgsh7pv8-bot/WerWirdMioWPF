@@ -33,7 +33,6 @@
 
   <ItemGroup>
     <Folder Include="Fonts\" />
-    <Folder Include="Assets\" />
     <Folder Include="Theme\" />
     <Folder Include="Resource\" />
   </ItemGroup>

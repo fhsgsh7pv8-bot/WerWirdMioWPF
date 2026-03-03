@@ -19,12 +19,17 @@ namespace WerWirdMioWPF
         private GameService _gameService;
 
         public MainWindow()
+
+         
         {
+
+            _mediaPlayer.Volume = 0.07;
             InitializeComponent();
 
-            // 1. GameService initialisieren
-            _gameService = new GameService();
-            _gameService.navigationService = _NavigationFrame.NavigationService;
+   
+
+            // 1. Startsound abspielen
+            PlayStartSound();
 
             // 2. Globaler Event-Handler für ALLE Buttons im Spiel
             // Registriert den Sound-Effekt zentral für das gesamte Fenster
@@ -59,32 +64,13 @@ namespace WerWirdMioWPF
             // Loop-Logik: Immer wieder von vorne abspielen
             _backgroundPlayer.MediaEnded += (s, args) =>
             {
-                _backgroundPlayer.Position = TimeSpan.Zero;
-                _backgroundPlayer.Play();
+                _mediaPlayer.Position = TimeSpan.Zero; // Zurück zum Anfang
+
+                _mediaPlayer.Play();
             };
 
-            _backgroundPlayer.Play();
-        }
 
-        // Diese Methode wird bei jedem Klick auf einen Button im Spiel ausgeführt
-        private void OnGlobalButtonClicked(object sender, RoutedEventArgs e)
-        {
-            // Sicherstellen, dass die Quelle wirklich ein Button ist
-            if (e.OriginalSource is Button)
-            {
-                try
-                {
-                    // Button-Sound aus dem Assets-Ordner abspielen
-                    _uiPlayer.Open(new Uri("Assets/buttonsound.mp3", UriKind.Relative));
-                    _uiPlayer.Position = TimeSpan.Zero; // Zurücksetzen für schnelles Klicken
-                    _uiPlayer.Play();
-                }
-                catch (Exception ex)
-                {
-                    // Verhindert Absturz, falls die Datei fehlt
-                    System.Diagnostics.Debug.WriteLine("Sound-Fehler: " + ex.Message);
-                }
-            }
+            _mediaPlayer.Play();
         }
 
         private void _NavigationFrame_Navigated(object sender, NavigationEventArgs e)
