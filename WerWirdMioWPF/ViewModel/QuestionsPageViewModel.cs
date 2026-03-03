@@ -391,7 +391,7 @@ namespace WerWirdMioWPF.ViewModel
             }
             else
             {
-                onPlayPage(gameService);
+                onLosePage("Erreichte Punkte: " + score);
 
                 MessageBox.Show(message, "Spiel beendet", MessageBoxButton.OK, MessageBoxImage.Information);
 

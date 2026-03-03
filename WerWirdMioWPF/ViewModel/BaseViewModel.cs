@@ -103,6 +103,11 @@ namespace WerWirdMioWPF.ViewModel
             navigationService.Navigate(new HighscorePage(gameService));
         }
 
+        public void onLosePage(String message)
+        {
+            navigationService.Navigate(new LosePage(gameService, message));
+        }
+
         public void onEndPage(object param)
         {
             navigationService.Navigate(new EndPage());

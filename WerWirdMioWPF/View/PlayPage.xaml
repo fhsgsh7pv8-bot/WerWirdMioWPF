@@ -82,9 +82,9 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0">
             <Image Source="/images/Willkommen.png" Width="600" Height="Auto" />
 
-            <TextBlock Text="{Binding UserName}" 
+            <TextBlock Text="" 
                        HorizontalAlignment="Center" 
-                       FontSize="28" Foreground="Gold" FontWeight="Bold" Margin="0,20,0,0">
+                       FontSize="70" Foreground="Gold" FontWeight="Bold" Margin="0,20,0,0">
                 <TextBlock.Effect>
                     <DropShadowEffect BlurRadius="8" ShadowDepth="3" Opacity="0.8"/>
                 </TextBlock.Effect>
