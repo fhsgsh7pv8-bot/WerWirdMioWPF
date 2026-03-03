@@ -265,7 +265,7 @@ namespace WerWirdMioWPF.ViewModel
                 replacedAnswers.Clear();
                 // Joker zurücksetzen für die nächste Frage
 
-                if (selectedAnswerIndex == _currentQuestion.correctAnswer || selectedAnswerIndex != _currentQuestion.correctAnswer)
+                if (selectedAnswerIndex == _currentQuestion.correctAnswer )
                 {
                     if (_currentStageIndex == _stages.Count - 1) // 1 Millionen Frage erreicht
                     {
