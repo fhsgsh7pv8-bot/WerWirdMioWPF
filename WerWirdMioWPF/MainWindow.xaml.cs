@@ -16,14 +16,12 @@ namespace WerWirdMioWPF
         // Separater Player für den Button-Sound (Effekt-Kanal)
         private MediaPlayer _uiPlayer = new MediaPlayer();
 
-        private GameService _gameService;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // Service initialisieren (Wichtig, sonst gibt es eine NullReferenceException)
-            _gameService = new GameService();
+      
 
             // Lautstärke zentral einstellen
             _backgroundPlayer.Volume = 0.07;
@@ -36,7 +34,9 @@ namespace WerWirdMioWPF
             PlayStartSequence();
 
             // 3. Erste Seite laden
-            _NavigationFrame.Navigate(new StartPage(_gameService));
+            GameService gameService = new GameService();
+            gameService.navigationService = _NavigationFrame.NavigationService;
+            _NavigationFrame.Navigate(new StartPage(gameService));
         }
 
         private void PlayStartSequence()
