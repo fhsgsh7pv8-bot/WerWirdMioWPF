@@ -23,6 +23,7 @@
     <None Remove="images\nameeingeben.png" />
     <None Remove="images\name_eingeben.png" />
     <None Remove="images\patrick.jpg" />
+    <None Remove="images\respect.png" />
     <None Remove="images\spielstarten.png" />
     <None Remove="images\startpage.png" />
     <None Remove="images\Tikiland.png" />
@@ -53,6 +54,7 @@
     <Resource Include="images\highscore.jpg" />
     <Resource Include="images\Leaderboard.png" />
     <Resource Include="images\patrick.jpg" />
+    <Resource Include="images\respect.png" />
     <Resource Include="images\spielstarten.png" />
     <Resource Include="images\startpage.png" />
     <Resource Include="images\Tikiland.png" />
