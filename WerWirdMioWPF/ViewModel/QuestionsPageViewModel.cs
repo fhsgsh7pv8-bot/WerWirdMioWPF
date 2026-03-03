@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Navigation;
 using WerWirdMioWPF.Model;
 using WerWirdMioWPF.Service;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace WerWirdMioWPF.ViewModel
 {
@@ -40,6 +41,9 @@ namespace WerWirdMioWPF.ViewModel
         public ICommand SelectJokerCommand { get; }
 
 
+        public ICommand BackCommand { get; }
+
+
 
         List<string> replacedAnswers = new List<string>();
         List<string> usedJokers = new List<string>();
@@ -61,12 +65,26 @@ namespace WerWirdMioWPF.ViewModel
         {
             AnswerCommand = new DelegateCommand(OnAnswerSelected);
             SelectJokerCommand = new DelegateCommand(OnSelectJoker);
+            BackCommand = new DelegateCommand(onBack);
             InitializeStages();
             LoadNextQuestion();
 
             usedThisRoundJoker = false;
         }
 
+
+        public void onBack(object para)
+        {
+            if (MessageBox.Show("Möchtest du wirklich zurück zum Hauptmenü? Du würdest "+GetSafeZoneAmount()+"€ bekommen!", "Bestätigung", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                usedJokers.Clear();
+
+                replacedAnswers.Clear();
+                usedThisRoundJoker = false;
+                gameService.highscoreService.AddOrUpdateScore(gameService.UserName, GetSafeZoneAmount());
+                onPlayPage(gameService);
+            }
+        }
 
         //50/50 JOKER
         //Danielaffe joker (nur einer geht weg)
