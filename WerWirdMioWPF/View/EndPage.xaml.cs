@@ -6,9 +6,6 @@ using System.Windows.Media;
 
 namespace WerWirdMioWPF.View
 {
-    /// <summary>
-    /// Interaktionslogik für EndPage.xaml
-    /// </summary>
     public partial class EndPage : Page
     {
         // Separater Player für den End-Sound
@@ -35,7 +32,7 @@ namespace WerWirdMioWPF.View
         {
             try
             {
-                // Pfad zur missionpassed.mp3 (relativ zum Assets-Ordner)
+                // Pfad zur missionpassed.mp3 
                 string soundPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "missionpassed.mp3");
 
                 if (System.IO.File.Exists(soundPath))
