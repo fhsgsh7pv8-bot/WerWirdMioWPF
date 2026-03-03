@@ -43,7 +43,7 @@ namespace WerWirdMioWPF.ViewModel
 
         private string _username;
 
-        public GameService gameService { get; }
+        public GameService gameService;
         public QuestionService questionService;
 
         public BaseViewModel(GameService gameService)

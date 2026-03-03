@@ -80,7 +80,7 @@ namespace WerWirdMioWPF.ViewModel
         {
             usedThisRoundJoker = false;
             replacedAnswers.Clear();
-            usedJokers.Clear();
+           
         }
 
         //50/50 JOKER
@@ -363,7 +363,7 @@ namespace WerWirdMioWPF.ViewModel
 
         private void EndGame(int score, string message)
         {
-
+            usedJokers.Clear();
             resetJokers();
 
             gameService.highscoreService.AddOrUpdateScore(gameService.UserName, score);
