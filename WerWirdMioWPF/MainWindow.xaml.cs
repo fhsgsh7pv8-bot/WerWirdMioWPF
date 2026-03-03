@@ -24,11 +24,8 @@ namespace WerWirdMioWPF
             _backgroundPlayer.Volume = 0.07;
             _uiPlayer.Volume = 0.2;
 
-            // 1. Globaler Event-Handler für ALLE Buttons im Fenster
-            // Wir registrieren das Event auf Tunneling/Bubbling Ebene
             this.AddHandler(Button.ClickEvent, new RoutedEventHandler(OnGlobalButtonClicked));
 
-            // 2. Musik-Sequenz starten (Startsound -> Main Music)
             PlayStartSequence();
 
             // 3. Erste Seite laden
@@ -42,7 +39,7 @@ namespace WerWirdMioWPF
             // Startsound laden
             _backgroundPlayer.Open(new Uri("Assets/startsound.mp3", UriKind.Relative));
 
-            // Event: Wenn Startsound zu Ende, wechsle zur Main-Music
+           // wechsle zur Main-Music
             _backgroundPlayer.MediaEnded += TransitionToMainMusic;
 
             _backgroundPlayer.Play();
@@ -90,7 +87,7 @@ namespace WerWirdMioWPF
 
         private void _NavigationFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            // Platz für zusätzliche Navigations-Logik
+            
         }
     }
 }
