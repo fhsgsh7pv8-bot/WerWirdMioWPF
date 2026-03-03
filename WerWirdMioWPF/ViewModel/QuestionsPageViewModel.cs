@@ -265,7 +265,7 @@ namespace WerWirdMioWPF.ViewModel
                 replacedAnswers.Clear();
                 // Joker zurücksetzen für die nächste Frage
 
-                if (selectedAnswerIndex == _currentQuestion.correctAnswer)
+                if (selectedAnswerIndex == _currentQuestion.correctAnswer || selectedAnswerIndex != _currentQuestion.correctAnswer)
                 {
                     if (_currentStageIndex == _stages.Count - 1) // 1 Millionen Frage erreicht
                     {
@@ -369,14 +369,33 @@ namespace WerWirdMioWPF.ViewModel
         }
 
         private void EndGame(int score, string message)
-        {
-            MessageBox.Show(message, "Spiel beendet", MessageBoxButton.OK, MessageBoxImage.Information);
 
+
+
+
+        {
+
+
+
+         
             usedJokers.Clear();
 
             gameService.highscoreService.AddOrUpdateScore(gameService.UserName, score);
 
-            onPlayPage(gameService);
+
+
+            if (score == 1000000)
+            {
+                onEndPage(gameService);
+
+            }
+            else
+            {
+                onPlayPage(gameService);
+
+                MessageBox.Show(message, "Spiel beendet", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
         }
     }
 
