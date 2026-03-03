@@ -16,18 +16,16 @@ namespace WerWirdMioWPF
         // Separater Player für den Button-Sound (Effekt-Kanal)
         private MediaPlayer _uiPlayer = new MediaPlayer();
 
-
         public MainWindow()
         {
             InitializeComponent();
-
-      
 
             // Lautstärke zentral einstellen
             _backgroundPlayer.Volume = 0.07;
             _uiPlayer.Volume = 0.2;
 
             // 1. Globaler Event-Handler für ALLE Buttons im Fenster
+            // Wir registrieren das Event auf Tunneling/Bubbling Ebene
             this.AddHandler(Button.ClickEvent, new RoutedEventHandler(OnGlobalButtonClicked));
 
             // 2. Musik-Sequenz starten (Startsound -> Main Music)
@@ -70,10 +68,24 @@ namespace WerWirdMioWPF
 
         private void OnGlobalButtonClicked(object sender, RoutedEventArgs e)
         {
-            // Sound für Klicks abspielen
-            _uiPlayer.Open(new Uri("Assets/click.mp3", UriKind.Relative));
-            _uiPlayer.Stop(); // Zurücksetzen, falls schnell hintereinander geklickt wird
-            _uiPlayer.Play();
+            // Wir prüfen, ob die Quelle des Klicks wirklich ein Button (oder ein Teil eines Buttons) ist
+            if (e.OriginalSource is Button || e.Source is Button)
+            {
+                try
+                {
+                    // Pfad zur Sounddatei
+                    _uiPlayer.Open(new Uri("Assets/buttonsound.mp3", UriKind.Relative));
+
+                    // Wichtig: Stop und Position auf Null, damit der Sound bei schnellen Klicks sofort neu triggert
+                    _uiPlayer.Stop();
+                    _uiPlayer.Position = TimeSpan.Zero;
+                    _uiPlayer.Play();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Sound konnte nicht abgespielt werden: " + ex.Message);
+                }
+            }
         }
 
         private void _NavigationFrame_Navigated(object sender, NavigationEventArgs e)
